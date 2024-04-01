@@ -11,24 +11,23 @@
   },
   "tauri": {
     "allowlist": {
+      "path": {
+        "all": true
+      },
+      "fs": {
+        "all": true,
+        "scope": ["**"]
+      },
+      "protocol": {
+        "asset": true,
+        "assetScope": ["**"]
+      },
       "http": {
         "all": true,
         "request": true,
         "scope": ["http://*"]
       },
-      "all": false,
-      "shell": {
-        "sidecar": true,
-        "scope": [
-          {
-            "name": "binaries/server",
-            "sidecar": true
-          }
-        ],
-        "all": true,
-        "execute": true,
-        "open": true
-      }
+      "all": false
     },
     "windows": [
       {

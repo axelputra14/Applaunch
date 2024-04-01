@@ -21,7 +21,7 @@ export default {
 
 <template>
   <div class="applist-body">
-    <h1>Ini app list component</h1>
+    <h1 class="text-orange-600">Ini app list component</h1>
     <div class="list-grid-wrapper">
       <Appcard v-for="app in applists" :applicationdata="app" :key="app.id" />
       <!-- <div class="app-card">
