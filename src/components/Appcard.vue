@@ -7,7 +7,7 @@ export default {
 
 <template>
   <div class="app-card">
-    <h3>{{ applicationdata.title }}</h3>
+    <h3 class="text-white">{{ applicationdata.title }}</h3>
     <br />
     <img v-bind:src="applicationdata.imgDir" />
   </div>

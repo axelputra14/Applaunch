@@ -8,7 +8,7 @@
 // 
 
 use tauri::{
-    api::process::Command,
+    // api::process::Command,
     Manager,
 };
 
@@ -16,12 +16,7 @@ fn main() {
     tauri::Builder::default()
     .setup(|app| {
       let _window = app.get_window("main").unwrap();
-      tauri::async_runtime::spawn(async move {
-        let _ = Command::new_sidecar("server") // This is only the name of the binary itself, not the complete path like on the javascript side above
-          .expect("failed to setup `app` sidecar")
-          .spawn()
-          .expect("Failed to spawn packaged node");
-      });
+
 
       Ok(())
     })

@@ -43,7 +43,6 @@
     },
     "bundle": {
       "active": true,
-      "externalBin": ["binaries/server"],
       "targets": "all",
       "identifier": "com.applaunch.dev",
       "icon": [
