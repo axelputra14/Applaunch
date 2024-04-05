@@ -31,6 +31,7 @@ export const useFetchStore = defineStore({
           publisher: addData.publisher,
           exeDir: addData.exeDir,
           imgDir: addData.imgDir,
+          bgDir: addData.bgDir,
           desc: addData.desc,
           lang: addData.lang,
           relDate: addData.relDate,
