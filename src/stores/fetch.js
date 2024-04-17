@@ -10,6 +10,7 @@ export const useFetchStore = defineStore({
     return {
       tesvar: "Hello dunia",
       applists: [],
+      applistbyid: {},
     };
   },
   actions: {
@@ -18,6 +19,16 @@ export const useFetchStore = defineStore({
         const response = await applist.get("/app");
 
         this.applists = response.data.rows;
+      } catch (err) {
+        console.log("Gagal");
+        console.log(err);
+      }
+    },
+    async fetchAppById(id) {
+      try {
+        const response = await applist.get(`/app/${id}`);
+
+        this.applistbyid = response.data.result;
       } catch (err) {
         console.log("Gagal");
         console.log(err);

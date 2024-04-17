@@ -28,9 +28,9 @@ export default {
         <h2 class="text-3xl font-bold underline">Ini halaman app list</h2>
         <br />
         <Applistcomponent />
-        <p>Tes data & {{ tesvar }}</p>
+        <!-- <p>Tes data & {{ tesvar }}</p>
         <br />
-        <p>{{ applists }}</p>
+        <p>{{ applists }}</p> -->
       </div>
       <BottomNav />
     </div>

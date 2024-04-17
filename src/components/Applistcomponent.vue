@@ -30,16 +30,6 @@ export default {
       <!-- Image 1 -->
       <div class="relative group">
         <Appcard v-for="app in applists" :applicationdata="app" :key="app.id" />
-        <!-- <img
-          class="w-full h-auto rounded-lg shadow-lg transition duration-300 transform group-hover:scale-105"
-          src="https://via.placeholder.com/200x300"
-          alt="Image 1"
-        /> -->
-        <!-- <div
-          class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 opacity-0 flex justify-center items-center transition duration-300 group-hover:opacity-100"
-        > -->
-        <!-- <a href="#" class="text-white text-lg font-bold">View</a> -->
-        <!-- </div> -->
       </div>
     </div>
 
