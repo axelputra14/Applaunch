@@ -2,9 +2,11 @@
 import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
+import { ArrowLeftIcon } from "@heroicons/vue/24/solid";
 export default {
   name: "AppDetail",
   components: {
+    ArrowLeftIcon,
     BottomNav,
   },
   methods: {
@@ -28,7 +30,11 @@ export default {
 <template>
   <div class="body">
     <div class="mainbody">
-      <button
+      <ArrowLeftIcon
+        class="h-12 w-12 text-blue-500 cursor-pointer duration-200 hover:scale-125 active:scale-100"
+        v-on:click="goBack"
+      />
+      <!-- <button
         class="cursor-pointer duration-200 hover:scale-125 active:scale-100"
         title="Go Back"
         v-on:click="goBack"
@@ -47,7 +53,7 @@ export default {
             d="M11 6L5 12M5 12L11 18M5 12H19"
           ></path>
         </svg>
-      </button>
+      </button> -->
       <div class="contentbody">
         <h2 class="text-3xl font-bold underline">Ini halaman detail app</h2>
         <br />

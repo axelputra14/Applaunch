@@ -1,6 +1,8 @@
 <script>
+import { EyeIcon, PlayIcon, TrashIcon } from "@heroicons/vue/24/solid";
 export default {
   name: "Appcard",
+  components: { EyeIcon, PlayIcon, TrashIcon },
   props: ["applicationdata"],
   methods: {
     getAppDetail(id) {
@@ -11,11 +13,12 @@ export default {
 </script>
 
 <template>
-  <div class="relative group">
+  <div class="relative group p-20">
     <div
-      class="relative group cursor-pointer overflow-hidden duration-500 w-64 h-80 bg-zinc-800 text-gray-50"
+      class="relative group cursor-pointer overflow-hidden duration-500 max-w-[300px] max-h-[500px] bg-zinc-800 text-gray-50"
     >
-      <img v-bind:src="applicationdata.imgDir" />
+      <img class="object-cover" v-bind:src="applicationdata.imgDir" />
+
       <div class="">
         <div
           class="group-hover:scale-110 w-full h-60 bg-blue-400 duration-500"
@@ -28,6 +31,12 @@ export default {
           class="absolute -z-10 left-0 w-64 h-28 opacity-0 duration-500 group-hover:opacity-0 group-hover:bg-blue-900"
         ></div>
         <span class="text-xl font-bold">Hover me!</span>
+        <EyeIcon
+          class="h-6 w-6 text-blue-500"
+          v-on:click="getAppDetail(applicationdata.id)"
+        />
+        <PlayIcon class="h-6 w-6 text-blue-500" />
+        <TrashIcon class="h-6 w-6 text-blue-500" />
         <p class="group-hover:opacity-100 w-56 duration-500 opacity-0">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         </p>
