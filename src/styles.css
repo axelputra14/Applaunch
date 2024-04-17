@@ -14,6 +14,17 @@
   -webkit-text-size-adjust: 100%;
 }
 
+html {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.body {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+
 .container {
   margin: 0;
   padding-top: 10vh;
@@ -21,7 +32,6 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  min-height: 100vh;
 }
 
 .logo {

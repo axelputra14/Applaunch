@@ -123,7 +123,7 @@ export default {
         <label
           for="description"
           class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-[#e8e8e8] w-fit"
-          >Executable Directory:</label
+          >Description:</label
         >
         <textarea
           id="description"
@@ -136,7 +136,7 @@ export default {
         <label
           for="bgdir"
           class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-[#e8e8e8] w-fit"
-          >Background Image Directory:</label
+          >Language:</label
         >
         <input
           id="lang"
@@ -150,7 +150,7 @@ export default {
         <label
           for="relDate"
           class="text-blue-500 text-xs font-semibold relative top-2 ml-[7px] px-[3px] bg-[#e8e8e8] w-fit"
-          >Date:</label
+          >Release Date:</label
         >
         <input
           id="relDate"

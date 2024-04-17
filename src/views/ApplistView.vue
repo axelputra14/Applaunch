@@ -25,9 +25,10 @@ export default {
   <div class="body">
     <div class="mainbody">
       <div class="contentbody">
-        <h2 class="text-3xl font-bold underline">Ini halaman app list</h2>
         <br />
+
         <Applistcomponent />
+
         <!-- <p>Tes data & {{ tesvar }}</p>
         <br />
         <p>{{ applists }}</p> -->
