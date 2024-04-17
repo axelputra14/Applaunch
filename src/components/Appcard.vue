@@ -15,15 +15,15 @@ export default {
 <template>
   <div class="relative group p-20">
     <div
-      class="relative group cursor-pointer overflow-hidden duration-500 max-w-[300px] max-h-[500px] text-gray-50 bg-yellow-300"
+      class="relative group cursor-pointer overflow-hidden duration-500 text-gray-50 bg-yellow-300"
     >
-      <img class="object-cover" v-bind:src="applicationdata.imgDir" />
+      <img
+        class="object-cover w-[350px] h-[475px]"
+        v-bind:src="applicationdata.imgDir"
+      />
 
-      <div class="">
-        <div class="group-hover:scale-110 w-full h-60 duration-500"></div>
-      </div>
       <div
-        class="absolute left-0 p-5 w-full -bottom-16 duration-500 group-hover:-translate-y-12 flex justify-evenly justify-items-stretch bg-green-600"
+        class="absolute left-0 p-3 w-full opacity-80 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center"
       >
         <EyeIcon
           class="h-6 w-6 text-blue-500"
