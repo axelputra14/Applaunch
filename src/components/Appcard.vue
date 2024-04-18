@@ -1,8 +1,10 @@
 <script>
 import { EyeIcon, PlayIcon, TrashIcon } from "@heroicons/vue/24/solid";
+import ModalDelete from "./ModalDelete.vue";
+
 export default {
   name: "Appcard",
-  components: { EyeIcon, PlayIcon, TrashIcon },
+  components: { EyeIcon, PlayIcon, TrashIcon, ModalDelete },
   props: ["applicationdata"],
   methods: {
     getAppDetail(id) {
@@ -11,7 +13,7 @@ export default {
   },
 };
 </script>
-
+<!-- https://webcraft-notes.com/blog/mastering-reusable-modals-in-vuejs-enhancing-ui -->
 <template>
   <div class="relative group p-20">
     <div
