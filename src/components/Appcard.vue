@@ -26,11 +26,15 @@ export default {
         class="absolute left-0 p-3 w-full opacity-80 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center"
       >
         <EyeIcon
-          class="h-6 w-6 text-blue-500"
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-none hover:stroke-orange-300"
           v-on:click="getAppDetail(applicationdata.id)"
         />
-        <PlayIcon class="h-6 w-6 text-blue-500" />
-        <TrashIcon class="h-6 w-6 text-blue-500" />
+        <PlayIcon
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-none hover:stroke-orange-300"
+        />
+        <TrashIcon
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-none hover:stroke-orange-300"
+        />
       </div>
     </div>
 
