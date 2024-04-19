@@ -15,30 +15,31 @@ export default {
 </script>
 <!-- https://webcraft-notes.com/blog/mastering-reusable-modals-in-vuejs-enhancing-ui -->
 <template>
-  <div class="relative group p-20">
+  <div class="relative m-5">
     <div
-      class="relative group cursor-pointer overflow-hidden duration-500 text-gray-50 bg-yellow-300"
+      class="relative group cursor-pointer overflow-hidden duration-500 text-gray-50 mx-auto"
     >
       <img
-        class="object-cover w-[350px] h-[475px]"
+        class="object-scale-down w-max-[400px] h-[650px] items-center justify-center mx-auto"
         v-bind:src="applicationdata.imgDir"
       />
 
       <div
-        class="absolute left-0 p-3 w-full opacity-80 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center"
+        class="absolute left-0 w-full opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
       >
         <EyeIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-none hover:stroke-orange-300"
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300"
           v-on:click="getAppDetail(applicationdata.id)"
         />
         <PlayIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-none hover:stroke-orange-300"
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300"
         />
         <TrashIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-none hover:stroke-orange-300"
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300"
         />
       </div>
     </div>
+    <p class="text-white text-3xl text-center">{{ applicationdata.title }}</p>
 
     <!-- <h3 class="text-white">{{ applicationdata.title }}</h3>
     <br />
