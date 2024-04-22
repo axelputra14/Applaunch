@@ -1,6 +1,8 @@
 <script>
 import { EyeIcon, PlayIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import ModalDelete from "./ModalDelete.vue";
+import { mapActions, mapState } from "pinia";
+import { useFetchStore } from "../stores/fetch";
 import { invoke } from "@tauri-apps/api/tauri";
 
 export default {
@@ -8,20 +10,53 @@ export default {
   components: { EyeIcon, PlayIcon, TrashIcon, ModalDelete },
   props: ["applicationdata"],
   methods: {
+    ...mapActions(useFetchStore, ["deleteApplication"]),
     getAppDetail(id) {
       this.$router.push({ name: "appDetail", params: { id } });
     },
+
     launchApp(exeDir) {
       invoke("launch_app", { exeDir });
     },
+    openDeleteModal(appid, button, content) {
+      this.appId = appid;
+      this.showModal = true;
+      this.type = button;
+      this.content = content;
+    },
+    deleteAppById(appid) {
+      this.showModal = false;
+      this.deleteApplication(appid);
+    },
+  },
+  data() {
+    return {
+      appid: "",
+      type: "",
+      content: "",
+      showModal: false,
+    };
   },
 };
 </script>
 <!-- https://webcraft-notes.com/blog/mastering-reusable-modals-in-vuejs-enhancing-ui -->
 <template>
+  <ModalDelete
+    v-if="showModal"
+    @close="showModal = false"
+    v-bind:applicationid="this.appId"
+    @deleteApp="deleteAppById"
+  >
+    <template v-slot:header>
+      <h1>{{ type }}</h1>
+    </template>
+    <template v-slot:content>
+      <p>{{ content }}</p>
+    </template>
+  </ModalDelete>
   <div class="relative m-5">
     <div
-      class="relative group cursor-pointer overflow-hidden duration-500 text-gray-50 mx-auto"
+      class="relative group cursor-pointer rounded-lg overflow-hidden duration-500 text-gray-50 mx-auto hover:bg-slate-50/5"
     >
       <img
         class="object-scale-down w-max-[400px] h-[650px] items-center justify-center mx-auto"
@@ -37,10 +72,17 @@ export default {
         />
         <PlayIcon
           class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
-          v-on:clicl="launchApp(applicationdata.exeDir)"
+          v-on:click="launchApp(applicationdata.exeDir)"
         />
         <TrashIcon
           class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
+          v-on:click="
+            openDeleteModal(
+              applicationdata.id,
+              'Deletion',
+              'Are you sure to delete this?'
+            )
+          "
         />
       </div>
     </div>

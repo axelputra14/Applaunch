@@ -59,7 +59,7 @@ export const useFetchStore = defineStore({
         router.push({ name: "applistpage" });
         // swal fire something
       } catch (err) {
-        console.log("not allowed to delete");
+        console.log(err.response.data.message);
       }
     },
   },

@@ -9,14 +9,9 @@ export default {
     BottomNav,
     Applistcomponent,
   },
-  methods: {
-    ...mapActions(useFetchStore, ["fetchApplists"]),
-  },
+
   computed: {
     ...mapState(useFetchStore, ["tesvar", "applists"]),
-  },
-  created() {
-    this.fetchApplists();
   },
 };
 </script>
