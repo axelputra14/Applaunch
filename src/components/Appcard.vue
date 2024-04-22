@@ -1,5 +1,10 @@
 <script>
-import { EyeIcon, PlayIcon, TrashIcon } from "@heroicons/vue/24/solid";
+import {
+  EyeIcon,
+  PencilSquareIcon,
+  PlayIcon,
+  TrashIcon,
+} from "@heroicons/vue/24/solid";
 import ModalDelete from "./ModalDelete.vue";
 import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
@@ -7,7 +12,7 @@ import { invoke } from "@tauri-apps/api/tauri";
 
 export default {
   name: "Appcard",
-  components: { EyeIcon, PlayIcon, TrashIcon, ModalDelete },
+  components: { EyeIcon, PencilSquareIcon, PlayIcon, TrashIcon, ModalDelete },
   props: ["applicationdata"],
   methods: {
     ...mapActions(useFetchStore, ["deleteApplication"]),
@@ -70,6 +75,8 @@ export default {
           class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
           v-on:click="getAppDetail(applicationdata.id)"
         />
+        <PencilSquareIcon class="h-6 w-6 text-blue-500 duration-500
+        hover:fill-orange-300 active:fill-green-400"" />
         <PlayIcon
           class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
           v-on:click="launchApp(applicationdata.exeDir)"
