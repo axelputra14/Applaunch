@@ -1,6 +1,7 @@
 <script>
 import { EyeIcon, PlayIcon, TrashIcon } from "@heroicons/vue/24/solid";
 import ModalDelete from "./ModalDelete.vue";
+import { invoke } from "@tauri-apps/api/tauri";
 
 export default {
   name: "Appcard",
@@ -9,6 +10,9 @@ export default {
   methods: {
     getAppDetail(id) {
       this.$router.push({ name: "appDetail", params: { id } });
+    },
+    launchApp(exeDir) {
+      invoke("launch_app", { exeDir });
     },
   },
 };
@@ -28,14 +32,15 @@ export default {
         class="absolute left-0 w-full opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
       >
         <EyeIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300"
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
           v-on:click="getAppDetail(applicationdata.id)"
         />
         <PlayIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300"
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
+          v-on:clicl="launchApp(applicationdata.exeDir)"
         />
         <TrashIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300"
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
         />
       </div>
     </div>
