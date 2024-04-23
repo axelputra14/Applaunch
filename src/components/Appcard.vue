@@ -64,7 +64,7 @@ export default {
       class="relative group cursor-pointer rounded-lg overflow-hidden duration-500 text-gray-50 mx-auto hover:bg-slate-50/5"
     >
       <img
-        class="object-scale-down w-max-[400px] h-[650px] items-center justify-center mx-auto"
+        class="object-scale-down max-w-[400px] h-[650px] items-center justify-center mx-auto"
         v-bind:src="applicationdata.imgDir"
       />
 
