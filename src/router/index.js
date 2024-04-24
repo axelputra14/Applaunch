@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ApplistView from "../views/ApplistView.vue";
-import AddappView from "../views/AddappView.vue";
+import FormappView from "../views/FormappView.vue";
 import AppDetail from "../views/AppDetail.vue";
 
 const router = createRouter({
@@ -20,6 +20,11 @@ const router = createRouter({
       path: "/app-add",
       name: "addapppage",
       component: AddappView,
+    },
+    {
+      path: "/app-edit",
+      name: "editapppage",
+      component: FormappView,
     },
     {
       path: "/app/:id",

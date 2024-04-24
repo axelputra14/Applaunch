@@ -7,46 +7,9 @@ export default {
   components: {
     RouterLink,
   },
-  //   methods: {
-  //     ...mapActions(useFetchStore, ["logout", "setIsLogin"]),
-  //     logoutHandler() {
-  //       this.logout();
-  //     },
-  //   },
-  //   computed: {
-  //     ...mapState(useFetchStore, ["isLogin"]),
-  //   },
-  //   created() {
-  //     if (localStorage.getItem("access_token")) {
-  //       this.setIsLogin();
-  //     }
-  //   },
 };
 </script>
 <template>
-  <!-- <div class="bottom-bar-overall">
-    <ul class="bottom-bar-container">
-      <li class="navbar-item">
-
-        
-          <span class="navbar-icon"><i class="bi bi-view-stacked"></i></span>
-          <span class="navbar-label">Apps</span>
-          <div id="bottom-navbar-indicator" class="nav-indicator"></div>
-        </RouterLink>
-
-      </li>
-      <li class="navbar-item">
-
-        <RouterLink to="/app-add">
-          <span class="navbar-icon"><i class="bi bi-plus-square"></i></span>
-          <span class="navbar-label">Add</span>
-          <div id="bottom-navbar-indicator" class="nav-indicator"></div>
-        </RouterLink>
-
-      </li>
-
-    </ul>
-  </div> -->
   <!-- component -->
   <div class="w-full">
     <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->

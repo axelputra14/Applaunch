@@ -2,31 +2,33 @@
 import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
-import { FwbButton } from "flowbite-vue";
 
 export default {
   name: "AddappView",
-  components: { BottomNav, FwbButton },
-  data() {
-    return {
-      addData: {
-        title: "",
-        developer: "",
-        publisher: "",
-        exeDir: "",
-        imgDir: "",
-        bgDir: "",
-        desc: "",
-        lang: "",
-        relDate: "",
-      },
-    };
+  components: { BottomNav },
+  computed: {
+    ...mapState(useFetchStore, ["applistbyid"]),
   },
   methods: {
-    ...mapActions(useFetchStore, ["addApplication"]),
+    ...mapActions(useFetchStore, ["addApplication", "fetchAppById"]),
     addappHandler() {
-      this.addApplication(this.addData);
+      this.addApplication(this.formData);
     },
+  },
+  data() {
+    return {
+      formData: {
+        title: this.fetchAppById?.title || "",
+        developer: this.fetchAppById?.developer || "",
+        publisher: this.fetchAppById?.publisher || "",
+        exeDir: this.fetchAppById?.exeDir || "",
+        imgDir: this.fetchAppById?.imgDir || "",
+        bgDir: this.fetchAppById?.bgDir || "",
+        desc: this.fetchAppById?.desc || "",
+        lang: this.fetchAppById?.lang || "",
+        relDate: this.fetchAppById?.relDate || "",
+      },
+    };
   },
 };
 </script>
