@@ -85,8 +85,8 @@ export default {
           v-on:click="
             openDeleteModal(
               applicationdata.id,
-              'Deletion',
-              'Are you sure to delete this?'
+              'Delete',
+              'Are you sure you want to delete this?'
             )
           "
         />
