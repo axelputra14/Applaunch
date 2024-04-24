@@ -48,7 +48,7 @@ export default {
     </ul>
   </div> -->
   <!-- component -->
-  <div class="w-full h-screen">
+  <div class="w-full">
     <!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
     <section
       id="bottom-navigation"
@@ -56,11 +56,11 @@ export default {
     >
       <nav class="bg-gray-800 bg-opacity-50">
         <div
-          class="container flex items-center justify-evenly p-6 mx-auto text-gray-600 capitalize dark:text-gray-300"
+          class="grid grid-cols-2 items-center text-center py-2 mx-auto text-gray-600 dark:text-gray-300"
         >
           <RouterLink
             to="/"
-            class="text-gray-200 border-b-2 border-purple-500 hover:border-emerald-500 mx-4 text-xl"
+            class="text-gray-200 border-b-2 border-transparent hover:border-emerald-500 mx-4 text-xl"
             >Home</RouterLink
           >
 

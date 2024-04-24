@@ -19,7 +19,7 @@ export default {
 <template>
   <div class="body">
     <div class="mainbody">
-      <div class="contentbody">
+      <div class="contentbody h-screen">
         <br />
 
         <Applistcomponent />
