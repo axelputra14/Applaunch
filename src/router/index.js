@@ -19,10 +19,10 @@ const router = createRouter({
     {
       path: "/app-add",
       name: "addapppage",
-      component: AddappView,
+      component: FormappView,
     },
     {
-      path: "/app-edit",
+      path: "/app-edit/:id",
       name: "editapppage",
       component: FormappView,
     },

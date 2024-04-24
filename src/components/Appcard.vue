@@ -32,6 +32,9 @@ export default {
       this.showModal = false;
       this.deleteApplication(appid);
     },
+    editApp(id) {
+      this.$router.push({ name: "editapppage", params: { id } });
+    },
   },
   data() {
     return {
@@ -74,8 +77,10 @@ export default {
           class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
           v-on:click="getAppDetail(applicationdata.id)"
         />
-        <PencilSquareIcon class="h-6 w-6 text-blue-500 duration-500
-        hover:fill-orange-300 active:fill-green-400"" />
+        <PencilSquareIcon
+          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
+          v-on:click="editApp(applicationdata.id)"
+        />
         <PlayIcon
           class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
           v-on:click="launchApp(applicationdata.exeDir)"

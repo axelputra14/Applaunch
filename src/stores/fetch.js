@@ -30,8 +30,7 @@ export const useFetchStore = defineStore({
 
         this.applistbyid = response.data.result;
       } catch (err) {
-        console.log("Gagal");
-        console.log(err);
+        console.log(err.response.data.message);
       }
     },
     async addApplication(addData) {
@@ -49,6 +48,24 @@ export const useFetchStore = defineStore({
         });
         router.push({ name: "applistpage" });
         // swal fire something
+      } catch (err) {
+        console.log(err.response.data.message);
+      }
+    },
+    async editApplication(editData) {
+      try {
+        const response = await applist.patch(`/app/edit/${editData.id}`, {
+          title: editData.title,
+          developer: editData.developer,
+          publisher: editData.publisher,
+          exeDir: editData.exeDir,
+          imgDir: editData.imgDir,
+          bgDir: editData.bgDir,
+          desc: editData.desc,
+          lang: editData.lang,
+          relDate: editData.relDate,
+        });
+        router.push({ name: "applistpage" });
       } catch (err) {
         console.log(err.response.data.message);
       }

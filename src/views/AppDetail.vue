@@ -4,7 +4,7 @@ import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
 import { ArrowLeftIcon } from "@heroicons/vue/24/solid";
 import ModalDelete from "../components/ModalDelete.vue";
-import applist from "../apis/applist";
+
 export default {
   name: "AppDetail",
   components: {
