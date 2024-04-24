@@ -19,7 +19,7 @@ export default {
       this.addApplication(this.formData);
     },
     editappHandler() {
-      this.addApplication(this.formData);
+      this.editApplication(this.formData);
     },
   },
   data() {
@@ -37,7 +37,7 @@ export default {
       },
     };
   },
-  mounted() {
+  created() {
     if (this.$route.params.id) {
       this.fetchAppById(this.$route.params.id);
     }
@@ -48,9 +48,10 @@ export default {
 <template>
   <div class="mainbody h-screen">
     <p>
-      {{ formData.title }} <br />
-      {{ formData.developer }} <br />
-      {{ formData.publisher }} <br />
+      {{ formData?.title }} <br />
+      {{ formData?.developer }} <br />
+      {{ formData?.publisher }} <br />
+      Lalala
     </p>
     <h1 class="text-white text-2xl">
       {{ !$route.params.id ? "Add new" : "Edit" }} application
@@ -220,7 +221,7 @@ export default {
           <input
             id="title"
             type="text"
-            placeholder="App name"
+            value="{{formData?.title}}"
             name="title"
             v-model="formData.title"
             class="border-blue-500 input px-[10px] py-[11px] text-base bg-[#252525] border-2 rounded-[5px] w-[410px] focus:outline-none placeholder:text-white/25 text-white"

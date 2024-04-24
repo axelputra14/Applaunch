@@ -20,7 +20,6 @@ export const useFetchStore = defineStore({
 
         this.applists = response.data.rows;
       } catch (err) {
-        console.log("Gagal");
         console.log(err);
       }
     },
