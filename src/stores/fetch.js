@@ -56,7 +56,8 @@ export const useFetchStore = defineStore({
     async deleteApplication(id) {
       try {
         await applist.delete(`/app/${id}`);
-        router.push({ name: "applistpage" });
+        // router.push({ name: "applistpage" });
+        router.go(0);
         // swal fire something
       } catch (err) {
         console.log(err.response.data.message);

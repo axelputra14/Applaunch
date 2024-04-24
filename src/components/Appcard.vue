@@ -19,7 +19,6 @@ export default {
     getAppDetail(id) {
       this.$router.push({ name: "appDetail", params: { id } });
     },
-
     launchApp(exeDir) {
       invoke("launch_app", { exeDir });
     },
@@ -44,7 +43,7 @@ export default {
   },
 };
 </script>
-<!-- https://webcraft-notes.com/blog/mastering-reusable-modals-in-vuejs-enhancing-ui -->
+
 <template>
   <ModalDelete
     v-if="showModal"

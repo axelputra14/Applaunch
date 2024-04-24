@@ -9,7 +9,6 @@ export default {
     BottomNav,
     Applistcomponent,
   },
-
   computed: {
     ...mapState(useFetchStore, ["tesvar", "applists"]),
   },
@@ -19,7 +18,7 @@ export default {
 <template>
   <div class="body">
     <div class="mainbody">
-      <div class="contentbody h-screen">
+      <div class="contentbody h-max overflow-auto">
         <br />
 
         <Applistcomponent />
