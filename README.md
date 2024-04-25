@@ -1,7 +1,14 @@
-# Tauri + Vue 3
+# Applaunch (Temporary name)
 
-This template should help get you started developing with Tauri + Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a personal project using Tauri + VueJS with SQLite DB and connected to Applaunch_be now as a temporary backend solution. The app is an application launcher similar to Playnite or Windows shortcut but much simpler and more catered for personal use.
 
-## Recommended IDE Setup
+## Roadmap
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+- Finish the frontend.
+- Convert the backend from Node to Rust.
+- Figuring out the host for images.
+
+## Why this tech stack?
+- Tauri: Enabling front-end websites to run like a native OS application, and it's lighter than other similar tech stacks.
+- VueJS: Most familiarity compared to other front-end JS.
+- NodeJS: Temporary solution for backend due to never learned Rust before.
