@@ -1,6 +1,6 @@
 use actix_web::{web, HttpResponse, Responder};
-use sqlx::SqlitePool;
 use chrono::NaiveDate;
+use sqlx::sqlite::SqlitePool;
 
 #[derive(Debug, sqlx::FromRow)]
 pub struct App {

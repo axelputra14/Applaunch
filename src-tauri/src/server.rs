@@ -10,12 +10,12 @@ pub fn start() {
     HttpServer::new(move || {
         App::new()
             // Pass the database connection pool to all routes
-            .data(pool.clone())
+            .app_data(pool.clone())
             // Configure routes
             .service(web::scope("/app").configure(routes::app_routes))
     })
     .bind("127.0.0.1:16850") // Bind to localhost:16850
     .expect("Failed to bind to address")
-    .run()
-    .expect("Failed to run server");
+    .run();
+    // .expect("Failed to run server");
 }
