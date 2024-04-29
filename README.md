@@ -5,10 +5,15 @@ This is a personal project using Tauri + VueJS with SQLite DB and connected to A
 ## Roadmap
 
 - Finish the frontend.
-- Convert the backend from Node to Rust.
+  - How to design detail page?
+  - 3 or 4 per row?
+  - Bg sometimes not 100% height.
 - Figuring out the host for images.
+  - Figure out the link stored in db so only image name is saved without it's prefix link of host.
+- Convert the backend from Node to Rust (low priority).
 
 ## Why this tech stack?
+
 - Tauri: Enabling front-end websites to run like a native OS application, and it's lighter than other similar tech stacks.
 - VueJS: Most familiarity compared to other front-end JS.
 - NodeJS: Temporary solution for backend due to never learned Rust before.
