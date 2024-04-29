@@ -24,8 +24,8 @@ export default {
   computed: {
     ...mapState(useFetchStore, ["applistbyid"]),
   },
-  created() {
-    this.fetchAppById(this.$route.params.id);
+  async created() {
+    await this.fetchAppById(this.$route.params.id);
   },
 };
 </script>

@@ -8,7 +8,6 @@ export const useFetchStore = defineStore({
   id: "fetch",
   state() {
     return {
-      tesvar: "Hello dunia",
       applists: [],
       applistbyid: {},
     };

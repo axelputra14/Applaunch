@@ -11,10 +11,10 @@ export default {
     ...mapActions(useFetchStore, ["fetchApplists"]),
   },
   computed: {
-    ...mapState(useFetchStore, ["tesvar", "applists"]),
+    ...mapState(useFetchStore, ["applists"]),
   },
-  created() {
-    this.fetchApplists();
+  async created() {
+    await this.fetchApplists();
   },
 };
 </script>

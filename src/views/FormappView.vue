@@ -15,16 +15,17 @@ export default {
       "editApplication",
       "fetchAppById",
     ]),
-    addappHandler() {
-      this.addApplication(this.formData);
+    async addappHandler() {
+      await this.addApplication(this.formData);
     },
-    editappHandler() {
-      this.editApplication(this.formData);
+    async editappHandler() {
+      await this.editApplication(this.formData);
     },
   },
   data() {
     return {
       formData: {
+        id: this.applistbyid?.id || "",
         title: this.applistbyid?.title || "",
         developer: this.applistbyid?.developer || "",
         publisher: this.applistbyid?.publisher || "",
@@ -37,9 +38,19 @@ export default {
       },
     };
   },
-  created() {
+  async created() {
     if (this.$route.params.id) {
-      this.fetchAppById(this.$route.params.id);
+      await this.fetchAppById(this.$route.params.id);
+      this.formData.id = this.applistbyid.id;
+      this.formData.title = this.applistbyid.title;
+      this.formData.developer = this.applistbyid.developer;
+      this.formData.publisher = this.applistbyid.publisher;
+      this.formData.exeDir = this.applistbyid.exeDir;
+      this.formData.imgDir = this.applistbyid.imgDir;
+      this.formData.bgDir = this.applistbyid.bgDir;
+      this.formData.desc = this.applistbyid.desc;
+      this.formData.lang = this.applistbyid.lang;
+      this.formData.relDate = this.applistbyid.relDate;
     }
   },
 };
@@ -47,12 +58,6 @@ export default {
 
 <template>
   <div class="mainbody h-screen">
-    <p>
-      {{ formData?.title }} <br />
-      {{ formData?.developer }} <br />
-      {{ formData?.publisher }} <br />
-      Lalala
-    </p>
     <h1 class="text-white text-2xl">
       {{ !$route.params.id ? "Add new" : "Edit" }} application
     </h1>
@@ -72,7 +77,7 @@ export default {
           <input
             id="title"
             type="text"
-            placeholder="App name"
+            placeholder="Application name"
             name="title"
             v-model="formData.title"
             class="border-blue-500 input px-[10px] py-[11px] text-base bg-[#252525] border-2 rounded-[5px] w-[410px] focus:outline-none placeholder:text-white/25 text-white"
@@ -221,7 +226,7 @@ export default {
           <input
             id="title"
             type="text"
-            value="{{formData?.title}}"
+            placeholder="Application name"
             name="title"
             v-model="formData.title"
             class="border-blue-500 input px-[10px] py-[11px] text-base bg-[#252525] border-2 rounded-[5px] w-[410px] focus:outline-none placeholder:text-white/25 text-white"

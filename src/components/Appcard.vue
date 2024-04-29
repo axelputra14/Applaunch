@@ -28,9 +28,9 @@ export default {
       this.type = button;
       this.content = content;
     },
-    deleteAppById(appid) {
+    async deleteAppById(appid) {
       this.showModal = false;
-      this.deleteApplication(appid);
+      await this.deleteApplication(appid);
     },
     editApp(id) {
       this.$router.push({ name: "editapppage", params: { id } });
