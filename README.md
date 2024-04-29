@@ -8,6 +8,7 @@ This is a personal project using Tauri + VueJS with SQLite DB and connected to A
   - How to design detail page?
   - 3 or 4 per row?
   - Bg sometimes not 100% height.
+  - Modal component for error messages similar to swal.
 - Figuring out the host for images.
   - Figure out the link stored in db so only image name is saved without it's prefix link of host.
 - Convert the backend from Node to Rust (low priority).

@@ -19,7 +19,7 @@ export const useFetchStore = defineStore({
 
         this.applists = response.data.rows;
       } catch (err) {
-        console.log(err);
+        console.log(err.response.data.message);
       }
     },
     async fetchAppById(id) {
