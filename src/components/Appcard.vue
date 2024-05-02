@@ -74,19 +74,19 @@ export default {
         class="absolute left-0 w-full opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
       >
         <EyeIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
+          class="h-6 w-6 text-sky-700 duration-500 hover:fill-sky-600 active:fill-sky-400"
           v-on:click="getAppDetail(applicationdata.id)"
         />
         <PencilSquareIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
+          class="h-6 w-6 text-orange-700 duration-500 hover:fill-orange-600 active:fill-orange-400"
           v-on:click="editApp(applicationdata.id)"
         />
         <PlayIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
+          class="h-6 w-6 text-sky-700 duration-500 hover:fill-sky-600 active:fill-sky-400"
           v-on:click="launchApp(applicationdata.exeDir)"
         />
         <TrashIcon
-          class="h-6 w-6 text-blue-500 duration-500 hover:fill-orange-300 active:fill-green-400"
+          class="h-6 w-6 text-red-700 duration-500 hover:fill-red-600 active:fill-red-400"
           v-on:click="
             openDeleteModal(
               applicationdata.id,
@@ -98,15 +98,5 @@ export default {
       </div>
     </div>
     <p class="text-white text-3xl text-center">{{ applicationdata.title }}</p>
-
-    <!-- <h3 class="text-white">{{ applicationdata.title }}</h3>
-    <br />
-    <img v-bind:src="applicationdata.imgDir" />
-    <button class="text-white" v-on:click="getAppDetail(applicationdata.id)">
-      Detail
-    </button> -->
   </div>
-  <!-- <div class="card">
-    <div class="card2"></div>
-  </div> -->
 </template>

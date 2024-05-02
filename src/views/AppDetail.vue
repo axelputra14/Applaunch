@@ -10,6 +10,7 @@ import {
   TrashIcon,
 } from "@heroicons/vue/24/solid";
 import ModalDelete from "../components/ModalDelete.vue";
+import { invoke } from "@tauri-apps/api/tauri";
 
 export default {
   name: "AppDetail",
@@ -29,6 +30,12 @@ export default {
     },
     deleteApp(id) {
       this.deleteApplication(id);
+    },
+    editApp(id) {
+      this.$router.push({ name: "editapppage", params: { id } });
+    },
+    launchApp(exeDir) {
+      invoke("launch_app", { exeDir });
     },
   },
   computed: {
@@ -75,31 +82,40 @@ export default {
           </div>
           <div class="p-8 col-span-2">
             <p class="text-5xl mb-8">{{ applistbyid.title }}</p>
-            <p class="mt-3 font-medium text-gray-800">Developer</p>
-            <p class="text-xl">{{ applistbyid.developer }}</p>
-            <p class="mt-3 font-medium text-gray-800">Publisher</p>
-            <p class="text-xl">{{ applistbyid.publisher }}</p>
-            <p class="mt-3 font-medium text-gray-800">Description</p>
-            <p class="text-xl">{{ applistbyid.desc }}</p>
-            <p class="mt-3 font-medium text-gray-800">Language</p>
-            <p class="text-xl">{{ applistbyid.lang }}</p>
-            <p class="mt-3 font-medium text-gray-800">Release Date</p>
-            <p class="text-xl">{{ finalDate }}</p>
+            <p class="mt-3 font-medium text-gray-900">Developer</p>
+            <p class="text-xl text-gray-800">{{ applistbyid.developer }}</p>
+            <p class="mt-3 font-medium text-gray-900">Publisher</p>
+            <p class="text-xl text-gray-800">{{ applistbyid.publisher }}</p>
+            <p class="mt-3 font-medium text-gray-900">Description</p>
+            <p class="text-xl text-gray-800">{{ applistbyid.desc }}</p>
+            <p class="mt-3 font-medium text-gray-900">Language</p>
+            <p class="text-xl text-gray-800">{{ applistbyid.lang }}</p>
+            <p class="mt-3 font-medium text-gray-900">Release Date</p>
+            <p class="text-xl text-gray-800">{{ finalDate }}</p>
           </div>
         </div>
         <div class="flex justify-end py-6 my-4">
           <ArrowLeftIcon
-            class="h-12 w-12 text-emerald-400 cursor-pointer duration-500 hover:scale-125 active:scale-100 mx-12"
+            class="h-12 w-12 text-blue-700 cursor-pointer duration-500 hover:scale-125 hover:fill-blue-600 active:fill-blue-400 active:scale-100 mx-12"
             v-on:click="goBack"
           />
           <PencilSquareIcon
-            class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
+            class="h-12 w-12 text-orange-700 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-600 active:fill-orange-400 mx-12"
+            v-on:click="editApp(applistbyid.id)"
           />
           <PlayIcon
-            class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
+            class="h-12 w-12 text-green-700 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-green-600 active:fill-green-400 mx-12"
+            v-on:click="launchApp(applistbyid.exeDir)"
           />
           <TrashIcon
-            class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
+            class="h-12 w-12 text-red-700 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-red-600 active:fill-red-400 mx-12"
+            v-on:click="
+              openDeleteModal(
+                applistbyid.id,
+                'Delete',
+                'Are you sure you want to delete this?'
+              )
+            "
           />
         </div>
       </div>
