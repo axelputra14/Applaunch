@@ -67,35 +67,40 @@ export default {
       class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-gradient-to-b from-transparent to-black/75"
     >
       <div
-        class="my-10 bg-gray-100 bg-opacity-10 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content"
+        class="mt-10 mb-20 bg-gray-100 bg-opacity-10 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content"
       >
-        <div class="">
-          <div class="p-8">
-            <p class="text-5xl">{{ applistbyid.title }}</p>
-            <p>{{ applistbyid.developer }}</p>
-            <p>{{ applistbyid.publisher }}</p>
-            <p>{{ applistbyid.exeDir }}</p>
-            <p>{{ applistbyid.imgDir }}</p>
-            <p>{{ applistbyid.desc }}</p>
-            <p>{{ applistbyid.lang }}</p>
-            <p>{{ finalDate }}</p>
+        <div class="grid grid-cols-3 gap-10 p-5">
+          <div class="col-span-1 flex justify-center items-center">
+            <img v-bind:src="applistbyid.imgDir" class="max-h-[700px]" />
           </div>
-
-          <div class="flex justify-end py-6 my-4">
-            <ArrowLeftIcon
-              class="h-12 w-12 text-emerald-400 cursor-pointer duration-500 hover:scale-125 active:scale-100 mx-12"
-              v-on:click="goBack"
-            />
-            <PencilSquareIcon
-              class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
-            />
-            <PlayIcon
-              class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
-            />
-            <TrashIcon
-              class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
-            />
+          <div class="p-8 col-span-2">
+            <p class="text-5xl mb-8">{{ applistbyid.title }}</p>
+            <p class="mt-3 font-medium text-gray-800">Developer</p>
+            <p class="text-xl">{{ applistbyid.developer }}</p>
+            <p class="mt-3 font-medium text-gray-800">Publisher</p>
+            <p class="text-xl">{{ applistbyid.publisher }}</p>
+            <p class="mt-3 font-medium text-gray-800">Description</p>
+            <p class="text-xl">{{ applistbyid.desc }}</p>
+            <p class="mt-3 font-medium text-gray-800">Language</p>
+            <p class="text-xl">{{ applistbyid.lang }}</p>
+            <p class="mt-3 font-medium text-gray-800">Release Date</p>
+            <p class="text-xl">{{ finalDate }}</p>
           </div>
+        </div>
+        <div class="flex justify-end py-6 my-4">
+          <ArrowLeftIcon
+            class="h-12 w-12 text-emerald-400 cursor-pointer duration-500 hover:scale-125 active:scale-100 mx-12"
+            v-on:click="goBack"
+          />
+          <PencilSquareIcon
+            class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
+          />
+          <PlayIcon
+            class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
+          />
+          <TrashIcon
+            class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 active:scale-100 hover:fill-orange-300 active:fill-green-400 mx-12"
+          />
         </div>
       </div>
     </div>
