@@ -67,7 +67,7 @@ export default {
     >
       <img
         class="object-scale-down max-w-[400px] h-[650px] items-center justify-center mx-auto"
-        v-bind:src="applicationdata.imgDir"
+        v-bind:src="'http://localhost:25850/cover/' + applicationdata.imgDir"
       />
 
       <div

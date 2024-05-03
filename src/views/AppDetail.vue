@@ -69,7 +69,10 @@ export default {
   <div
     class="relative max-w-full overflow-hidden bg-cover bg-[50%] bg-no-repeat max-h-screen"
   >
-    <img class="bg-cover w-screen h-screen" :src="applistbyid.bgDir" />
+    <img
+      class="bg-cover w-screen h-screen"
+      :src="'http://localhost:25850/bg/' + applistbyid.bgDir"
+    />
     <div
       class="absolute bottom-0 left-0 right-0 top-0 h-full w-full overflow-hidden bg-gradient-to-b from-transparent to-black/75"
     >
@@ -78,7 +81,10 @@ export default {
       >
         <div class="grid grid-cols-3 gap-10 p-5">
           <div class="col-span-1 flex justify-center items-center">
-            <img v-bind:src="applistbyid.imgDir" class="max-h-[700px]" />
+            <img
+              v-bind:src="'http://localhost:25850/cover/' + applistbyid.imgDir"
+              class="max-h-[700px]"
+            />
           </div>
           <div class="p-8 col-span-2">
             <p class="text-5xl mb-8">{{ applistbyid.title }}</p>

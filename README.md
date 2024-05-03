@@ -5,12 +5,13 @@ This is a personal project using Tauri + VueJS with SQLite DB and connected to A
 ## Roadmap
 
 - Finish the frontend.
-  - How to design detail page?
-  - 3 or 4 per row?
-  - Bg sometimes not 100% height.
+  - How to design detail page? :white_check_mark:
+  - 3 or 4 per row? :white_check_mark:
+  - Bg sometimes not 100% height. :white_check_mark:
   - Modal component for error messages similar to swal.
+  - Add something if app list is empty
 - Figuring out the host for images.
-  - Figure out the link stored in db so only image name is saved without it's prefix link of host.
+  - Figure out the link stored in db so only image name is saved without it's prefix link of host. :white_check_mark:
 - Convert the backend from Node to Rust (low priority).
 
 ## Why this tech stack?
