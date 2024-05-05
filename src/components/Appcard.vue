@@ -71,7 +71,7 @@ export default {
       />
 
       <div
-        class="absolute left-0 w-full opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
+        class="absolute left-0 w-full bg-opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
       >
         <EyeIcon
           class="h-6 w-6 text-sky-700 duration-500 hover:fill-sky-600 active:fill-sky-400"

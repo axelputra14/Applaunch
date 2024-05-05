@@ -2,10 +2,11 @@
 import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
+import { ArrowLeftIcon } from "@heroicons/vue/24/solid";
 
 export default {
   name: "FormappView",
-  components: { BottomNav },
+  components: { BottomNav, ArrowLeftIcon },
   computed: {
     ...mapState(useFetchStore, ["applistbyid"]),
   },
@@ -20,6 +21,9 @@ export default {
     },
     async editappHandler() {
       await this.editApplication(this.formData);
+    },
+    goBack() {
+      this.$router.go(-1);
     },
   },
   data() {
@@ -344,6 +348,12 @@ export default {
           />
         </div>
         <div class="flex flex-row justify-evenly">
+          <button
+            class="mt-10 py-2 px-4 text-xl bg-cyan-600 text-white hover:bg-cyan-500 active:bg-cyan-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-blue-500 rounded-lg"
+            v-on:click="goBack"
+          >
+            < Back
+          </button>
           <button
             class="mt-10 py-2 px-4 text-xl bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg"
             type="submit"

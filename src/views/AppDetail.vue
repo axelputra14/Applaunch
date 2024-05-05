@@ -12,6 +12,10 @@ import {
 import ModalDelete from "../components/ModalDelete.vue";
 import { invoke } from "@tauri-apps/api/tauri";
 
+async function launchApp(exeDir) {
+  await invoke("launch_app", { exeDir });
+}
+
 export default {
   name: "AppDetail",
   components: {
@@ -33,9 +37,6 @@ export default {
     },
     editApp(id) {
       this.$router.push({ name: "editapppage", params: { id } });
-    },
-    launchApp(exeDir) {
-      invoke("launch_app", { exeDir });
     },
   },
   computed: {
@@ -66,11 +67,9 @@ export default {
 </script>
 
 <template>
-  <div
-    class="relative max-w-full overflow-hidden bg-cover bg-[50%] bg-no-repeat max-h-screen"
-  >
+  <div class="relative max-w-full bg-[50%] bg-no-repeat max-h-screen">
     <img
-      class="bg-cover w-screen h-screen"
+      class="min-w-screen min-h-screen sticky"
       :src="'http://localhost:25850/bg/' + applistbyid.bgDir"
     />
     <div
