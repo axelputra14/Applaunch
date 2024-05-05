@@ -74,19 +74,19 @@ export default {
         class="absolute left-0 w-full bg-opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
       >
         <EyeIcon
-          class="h-6 w-6 text-sky-700 duration-500 hover:fill-sky-600 active:fill-sky-400"
+          class="h-6 w-6 text-sky-500 duration-500 hover:fill-sky-400 active:fill-sky-300"
           v-on:click="getAppDetail(applicationdata.id)"
         />
-        <PencilSquareIcon
-          class="h-6 w-6 text-orange-700 duration-500 hover:fill-orange-600 active:fill-orange-400"
-          v-on:click="editApp(applicationdata.id)"
-        />
         <PlayIcon
-          class="h-6 w-6 text-sky-700 duration-500 hover:fill-sky-600 active:fill-sky-400"
+          class="h-6 w-6 text-emerald-500 duration-500 hover:fill-emerald-400 active:fill-emerald-300"
           v-on:click="launchApp(applicationdata.exeDir)"
         />
+        <PencilSquareIcon
+          class="h-6 w-6 text-amber-500 duration-500 hover:fill-amber-400 active:fill-amber-300"
+          v-on:click="editApp(applicationdata.id)"
+        />
         <TrashIcon
-          class="h-6 w-6 text-red-700 duration-500 hover:fill-red-600 active:fill-red-400"
+          class="h-6 w-6 text-red-500 duration-500 hover:fill-red-400 active:fill-red-300"
           v-on:click="
             openDeleteModal(
               applicationdata.id,
