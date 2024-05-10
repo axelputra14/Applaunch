@@ -27,6 +27,13 @@
         "request": true,
         "scope": ["http://*"]
       },
+      "window": {
+        "startDragging": true,
+        "maximize": true,
+        "unmaximize": true,
+        "minimize": true,
+        "close": true
+      },
       "all": false
     },
     "windows": [
@@ -35,7 +42,8 @@
         "resizable": false,
         "title": "applaunch",
         "width": 1600,
-        "height": 900
+        "height": 900,
+        "decorations": false
       }
     ],
     "security": {
