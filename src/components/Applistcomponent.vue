@@ -32,7 +32,7 @@ export default {
           >
             Hello!
           </h1>
-          <p class="mb-4 text-3xl tracking-tight font-bold text-gray-100">
+          <p class="mb-4 text-3xl tracking-tight font-semibold text-gray-100">
             Welcome to Applaunch!
           </p>
           <p class="mb-4 text-lg font-medium text-gray-200">
@@ -43,6 +43,7 @@ export default {
     </section>
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8"
+      v-if="this.applists.length > 0"
     >
       <!-- Iterate over applists and render Appcard component -->
       <Appcard
