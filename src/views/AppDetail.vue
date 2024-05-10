@@ -78,7 +78,7 @@ export default {
       class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-gradient-to-b from-transparent to-black/75 overscroll-none"
     >
       <div
-        class="mt-10 mb-20 bg-gray-100 bg-opacity-30 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content overscroll-none"
+        class="mt-5 mb-20 bg-gray-100 bg-opacity-30 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content overscroll-none"
       >
         <div class="grid grid-cols-3 gap-10 p-5">
           <div class="col-span-1 flex justify-center items-center">
@@ -87,24 +87,24 @@ export default {
               class="max-h-[700px]"
             />
           </div>
-          <div class="p-8 col-span-2 drop-shadow-sm">
-            <p class="text-5xl mb-8">{{ applistbyid.title }}</p>
-            <p class="mt-3 font-medium text-gray-900">Developer</p>
-            <p class="text-xl text-gray-800">{{ applistbyid.developer }}</p>
-            <p class="mt-3 font-medium text-gray-900">Publisher</p>
-            <p class="text-xl text-gray-800">{{ applistbyid.publisher }}</p>
-            <p class="mt-3 font-medium text-gray-900">Description</p>
-            <p class="text-xl text-gray-800">{{ applistbyid.desc }}</p>
-            <p class="mt-3 font-medium text-gray-900">Language</p>
-            <p class="text-xl text-gray-800">{{ applistbyid.lang }}</p>
-            <p class="mt-3 font-medium text-gray-900">Release Date</p>
-            <p class="text-xl text-gray-800">{{ finalDate }}</p>
+          <div class="col-span-2 drop-shadow-sm">
+            <p class="text-5xl mb-5">{{ applistbyid.title }}</p>
+            <p class="mt-2 text-lg font-medium text-gray-900">Developer</p>
+            <p class="text-lg text-gray-800">{{ applistbyid.developer }}</p>
+            <p class="mt-2 text-lg font-medium text-gray-900">Publisher</p>
+            <p class="text-lg text-gray-800">{{ applistbyid.publisher }}</p>
+            <p class="mt-2 text-lg font-medium text-gray-900">Description</p>
+            <p class="text-lg text-gray-800">{{ applistbyid.desc }}</p>
+            <p class="mt-2 text-lg font-medium text-gray-900">Language</p>
+            <p class="text-lg text-gray-800">{{ applistbyid.lang }}</p>
+            <p class="mt-2 text-lg font-medium text-gray-900">Release Date</p>
+            <p class="text-lg text-gray-800">{{ finalDate }}</p>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="flex justify-start py-6 ml-2 my-4 sticky bottom-12 overflow-hidden"
+      class="flex justify-center py-6 ml-2 my-4 sticky bottom-12 overflow-hidden"
     >
       <ArrowLeftIcon
         class="h-12 w-12 text-blue-500 cursor-pointer duration-500 hover:scale-125 hover:fill-blue-400 active:fill-blue-300 active:scale-100 mx-12"
