@@ -71,15 +71,15 @@ export default {
       <div class="relative p-4 rounded-lg shadow">
         <!-- Modal header -->
         <div
-          class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 border-gray-600"
+          class="flex justify-between items-center pb-4 mb-4 rounded-t border-b mb-5 border-gray-600"
         >
           <h3 class="text-lg font-semibold text-white">
             {{ !$route.params.id ? "Add new" : "Edit" }} application
           </h3>
           <button
             type="button"
-            class="text-gray-400 bg-transparent hover: rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600 hover:text-white"
-            data-modal-toggle="defaultModal"
+            class="text-gray-400 bg-transparent hover:rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600 hover:text-white"
+            v-on:click="goBack"
           >
             <svg
               aria-hidden="true"
@@ -98,7 +98,7 @@ export default {
         </div>
         <!-- Modal body -->
         <form action="#" autocomplete="off">
-          <div class="grid gap-4 mb-4 sm:grid-cols-2">
+          <div class="grid gap-4 mb-4 grid-cols-2">
             <div>
               <label
                 for="title"
@@ -188,7 +188,7 @@ export default {
               />
             </div>
 
-            <div class="sm:col-span-2">
+            <div class="col-span-2">
               <label
                 for="description"
                 class="block mb-2 text-sm font-medium text-white"
