@@ -101,32 +101,90 @@ export default {
           <div class="grid gap-4 mb-4 sm:grid-cols-2">
             <div>
               <label
-                for="name"
+                for="title"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Name</label
+                >Title</label
               >
               <input
-                type="text"
+                type="title"
                 name="name"
-                id="name"
+                id="title"
                 class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
-                placeholder="Type product name"
-                required=""
+                placeholder="Title of the application"
               />
             </div>
             <div>
               <label
-                for="brand"
+                for="developer"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Brand</label
+                >Developer</label
               >
               <input
                 type="text"
-                name="brand"
-                id="brand"
+                name="developer"
+                id="developer"
                 class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
-                placeholder="Product brand"
-                required=""
+                placeholder="Developer"
+              />
+            </div>
+
+            <div>
+              <label
+                for="publisher"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Publisher</label
+              >
+              <input
+                type="text"
+                name="publisher"
+                id="publisher"
+                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                placeholder="Publisher"
+              />
+            </div>
+
+            <div>
+              <label
+                for="exedir"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Executable Directory</label
+              >
+              <input
+                type="text"
+                name="exedir"
+                id="exedir"
+                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                placeholder="Absolute directory of the executable"
+              />
+            </div>
+
+            <div>
+              <label
+                for="imgdir"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Cover Image</label
+              >
+              <input
+                type="text"
+                name="imgdir"
+                id="imgdir"
+                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                placeholder="Image file name for the cover"
+              />
+            </div>
+
+            <div>
+              <label
+                for="bgdir"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Background Image</label
+              >
+              <input
+                type="text"
+                name="bgdir"
+                id="bgdir"
+                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                placeholder="Image file name for the background in details"
               />
             </div>
 
@@ -143,10 +201,39 @@ export default {
                 placeholder="Write product description here"
               ></textarea>
             </div>
+
+            <div>
+              <label
+                for="lang"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Language</label
+              >
+              <input
+                type="text"
+                name="lang"
+                id="lang"
+                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                placeholder="Main language of the application"
+              />
+            </div>
+            <div>
+              <label
+                for="reldate"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Release date</label
+              >
+              <input
+                type="text"
+                name="reldate"
+                id="reldate"
+                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                placeholder="Release date in YYYY-MM-DD"
+              />
+            </div>
           </div>
           <button
             type="submit"
-            class="text-white inline-flex items-center bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+            class="text-white inline-flex float-right items-center bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
           >
             <svg
               class="mr-1 -ml-1 w-6 h-6"
@@ -160,7 +247,7 @@ export default {
                 clip-rule="evenodd"
               ></path>
             </svg>
-            Add new product
+            Add new app
           </button>
         </form>
       </div>
