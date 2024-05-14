@@ -71,14 +71,14 @@ export default {
       <div class="relative p-4 rounded-lg shadow">
         <!-- Modal header -->
         <div
-          class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600"
+          class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 border-gray-600"
         >
-          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+          <h3 class="text-lg font-semibold text-white">
             {{ !$route.params.id ? "Add new" : "Edit" }} application
           </h3>
           <button
             type="button"
-            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+            class="text-gray-400 bg-transparent hover: rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-600 hover:text-white"
             data-modal-toggle="defaultModal"
           >
             <svg
@@ -97,33 +97,33 @@ export default {
           </button>
         </div>
         <!-- Modal body -->
-        <form action="#">
+        <form action="#" autocomplete="off">
           <div class="grid gap-4 mb-4 sm:grid-cols-2">
             <div>
               <label
                 for="title"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Title</label
               >
               <input
-                type="title"
-                name="name"
+                type="text"
+                name="title"
                 id="title"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
-                placeholder="Title of the application"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
+                placeholder="Application title"
               />
             </div>
             <div>
               <label
                 for="developer"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Developer</label
               >
               <input
                 type="text"
                 name="developer"
                 id="developer"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Developer"
               />
             </div>
@@ -131,14 +131,14 @@ export default {
             <div>
               <label
                 for="publisher"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Publisher</label
               >
               <input
                 type="text"
                 name="publisher"
                 id="publisher"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Publisher"
               />
             </div>
@@ -146,14 +146,14 @@ export default {
             <div>
               <label
                 for="exedir"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Executable Directory</label
               >
               <input
                 type="text"
                 name="exedir"
                 id="exedir"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Absolute directory of the executable"
               />
             </div>
@@ -161,14 +161,14 @@ export default {
             <div>
               <label
                 for="imgdir"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Cover Image</label
               >
               <input
                 type="text"
                 name="imgdir"
                 id="imgdir"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Image file name for the cover"
               />
             </div>
@@ -176,14 +176,14 @@ export default {
             <div>
               <label
                 for="bgdir"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Background Image</label
               >
               <input
                 type="text"
                 name="bgdir"
                 id="bgdir"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Image file name for the background in details"
               />
             </div>
@@ -191,13 +191,13 @@ export default {
             <div class="sm:col-span-2">
               <label
                 for="description"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Description</label
               >
               <textarea
                 id="description"
                 rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-[#160b3b] rounded-lg border border-gray-300 focus:ring-cyan-500 focus:border-cyan-500 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="block p-2.5 w-full text-sm bg-[#160b3b] rounded-lg border border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Write product description here"
               ></textarea>
             </div>
@@ -205,35 +205,35 @@ export default {
             <div>
               <label
                 for="lang"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Language</label
               >
               <input
                 type="text"
                 name="lang"
                 id="lang"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Main language of the application"
               />
             </div>
             <div>
               <label
                 for="reldate"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                class="block mb-2 text-sm font-medium text-white"
                 >Release date</label
               >
               <input
                 type="text"
                 name="reldate"
                 id="reldate"
-                class="bg-[#160b3b] border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-cyan-500 dark:focus:border-cyan-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-gray-600 placeholder-gray-400 text-white focus:ring-cyan-500 focus:border-cyan-500"
                 placeholder="Release date in YYYY-MM-DD"
               />
             </div>
           </div>
           <button
             type="submit"
-            class="text-white inline-flex float-right items-center bg-cyan-700 hover:bg-cyan-800 focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-cyan-600 dark:hover:bg-cyan-700 dark:focus:ring-cyan-800"
+            class="text-white inline-flex float-right items-center focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-cyan-600 hover:bg-cyan-700 focus:ring-cyan-800"
           >
             <svg
               class="mr-1 -ml-1 w-6 h-6"
