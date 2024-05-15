@@ -68,17 +68,17 @@ export default {
 
 <template>
   <div
-    class="relative max-w-full max-h-screen bg-[50%] bg-no-repeat overflow-hidden overscroll-none"
+    class="relative max-w-full max-h-screen bg-[50%] bg-no-repeat overflow-hidden"
   >
     <img
       class="min-w-screen min-h-screen"
       :src="'http://localhost:25850/bg/' + applistbyid.bgDir"
     />
     <div
-      class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-gradient-to-b from-transparent to-black/75 overscroll-none"
+      class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-gradient-to-b from-transparent to-black/75"
     >
       <div
-        class="mt-5 mb-20 bg-gray-100 bg-opacity-30 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content overscroll-none"
+        class="mt-5 mb-20 bg-gray-100 bg-opacity-30 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content overflow-auto"
       >
         <div class="grid grid-cols-3 gap-10 p-5">
           <div class="col-span-1 flex justify-center items-center">
