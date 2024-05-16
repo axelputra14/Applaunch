@@ -1,5 +1,11 @@
 <script>
 import { appWindow } from "@tauri-apps/api/window";
+import {
+  MinusIcon,
+  Square2StackIcon,
+  WindowIcon,
+  XMarkIcon,
+} from "@heroicons/vue/24/solid";
 export default {
   data() {
     return {
@@ -12,6 +18,12 @@ export default {
   },
   destroyed() {
     window.removeEventListener("resize", this.resizeEventHandler);
+  },
+  components: {
+    MinusIcon,
+    Square2StackIcon,
+    WindowIcon,
+    XMarkIcon,
   },
   methods: {
     minimize() {
@@ -39,59 +51,48 @@ export default {
   <div
     @dblclick="toggleMaximize"
     data-tauri-drag-region
-    class="titlebar"
+    class="titlebar flex flex-row justify-end select-none gap-x-3 pr-4 pt-2 h-8 bg-transparent fixed right-0 pl-[1600px] z-50"
     id="titlebar"
   >
-    <div @click="minimize" class="titlebar-button" id="titlebar-minimize">
-      <img
-        src="https://api.iconify.design/mdi:window-minimize.svg"
-        alt="minimize"
-      />
+    <div
+      @click="minimize"
+      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
+      id="titlebar-minimize"
+    >
+      <MinusIcon
+        class="text-emerald-600 w-5 h-5 basis-10 stroke-2 stroke-emerald-600 drop-shadow-lg"
+      ></MinusIcon>
     </div>
     <div
       v-if="maximized"
       @click="toggleMaximize"
-      class="titlebar-button"
+      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
       id="titlebar-maximize"
     >
-      <img
-        src="https://api.iconify.design/mdi:window-restore.svg"
-        alt="maximize"
-      />
+      <Square2StackIcon
+        class="text-amber-500 w-5 h-5 basis-10 drop-shadow-lg"
+      ></Square2StackIcon>
     </div>
     <div
       v-else
       @click="toggleMaximize"
-      class="titlebar-button"
+      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
       id="titlebar-restore"
     >
-      <img
-        src="https://api.iconify.design/mdi:window-maximize.svg"
-        alt="restore"
-      />
+      <WindowIcon
+        class="text-amber-500 w-5 h-5 basis-10 drop-shadow-lg"
+      ></WindowIcon>
     </div>
-    <div @click="close" class="titlebar-button" id="titlebar-close">
-      <img src="https://api.iconify.design/mdi:close.svg" alt="close" />
+    <div
+      @click="close"
+      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
+      id="titlebar-close"
+    >
+      <XMarkIcon
+        class="text-red w-5 h-5 basis-10 stroke-2 stroke-red-500 drop-shadow-lg"
+      ></XMarkIcon>
     </div>
   </div>
 </template>
 
-<style scoped>
-.titlebar {
-  height: 30px;
-  background: #329ea3;
-  user-select: none;
-  display: flex;
-  justify-content: flex-end;
-}
-.titlebar-button {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 30px;
-  height: 30px;
-}
-.titlebar-button:hover {
-  background: #5bbec3;
-}
-</style>
+<style scoped></style>

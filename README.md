@@ -1,6 +1,6 @@
 # Applaunch (Temporary name)
 
-This is a personal project using Tauri + VueJS with SQLite DB and connected to Applaunch_be now as a temporary backend solution. The app is an application launcher similar to Playnite or Windows shortcut but much simpler and more catered for personal use.
+This is a personal project using Tauri + VueJS with SQLite DB and connected to Applaunch_be now as a temporary backend solution. The app is an application launcher similar to Playnite or Windows shortcut but much simpler and more catered for personal use. Icons library from HeroIcons.
 
 ## Roadmap
 
@@ -9,7 +9,9 @@ This is a personal project using Tauri + VueJS with SQLite DB and connected to A
   - 3 or 4 per row? :white_check_mark:
   - Bg sometimes not 100% height. :white_check_mark:
   - Modal component for error messages similar to swal.
-  - Add something if app list is empty
+  - Add something if app list is empty :white_check_mark:
+  - Custom title bar :white_check_mark:
+  - Refactor the form UI :white_check_mark:
 - Figuring out the host for images.
   - Figure out the link stored in db so only image name is saved without it's prefix link of host. :white_check_mark:
 - Convert the backend from Node to Rust (low priority).

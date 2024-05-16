@@ -7,6 +7,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  user-select: none;
 }
 
 .mainbody {
@@ -17,4 +18,25 @@
   align-items: center;
   justify-content: center;
   font-family: "Open Sans", sans-serif;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #170845;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #243daf;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #243ddf;
 }

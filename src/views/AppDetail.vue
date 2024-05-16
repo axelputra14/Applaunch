@@ -89,16 +89,16 @@ export default {
           </div>
           <div class="col-span-2 drop-shadow-sm">
             <p class="text-5xl mb-5">{{ applistbyid.title }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Developer</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.developer }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Publisher</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.publisher }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Description</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.desc }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Language</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.lang }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Release Date</p>
-            <p class="text-lg text-gray-800">{{ finalDate }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Developer</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.developer }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Publisher</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.publisher }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Description</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.desc }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Language</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.lang }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Release Date</p>
+            <p class="text-lg text-gray-900">{{ finalDate }}</p>
           </div>
         </div>
       </div>
