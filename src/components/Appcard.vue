@@ -97,6 +97,6 @@ export default {
         />
       </div>
     </div>
-    <p class="text-white text-3xl text-center">{{ applicationdata.title }}</p>
+    <p class="text-white text-2xl text-center">{{ applicationdata.title }}</p>
   </div>
 </template>
