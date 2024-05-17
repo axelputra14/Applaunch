@@ -12,6 +12,8 @@ This is a personal project using Tauri + VueJS with SQLite DB and connected to A
   - Add something if app list is empty :white_check_mark:
   - Custom title bar :white_check_mark:
   - Refactor the form UI :white_check_mark:
+  - Bottom tab refactor?
+  - Rounded corners outside Windows 11?
 - Figuring out the host for images.
   - Figure out the link stored in db so only image name is saved without it's prefix link of host. :white_check_mark:
 - Convert the backend from Node to Rust (low priority).
