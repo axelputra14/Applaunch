@@ -3,12 +3,15 @@ import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
 import { ArrowLeftIcon } from "@heroicons/vue/24/solid";
-
+import { invoke } from "@tauri-apps/api/tauri";
 export default {
   name: "FormappView",
   components: { BottomNav, ArrowLeftIcon },
   computed: {
     ...mapState(useFetchStore, ["applistbyid"]),
+    exePath: "",
+    imgPath: "",
+    bgPath: "",
   },
   methods: {
     ...mapActions(useFetchStore, [
@@ -24,6 +27,33 @@ export default {
     },
     goBack() {
       this.$router.go(-1);
+    },
+    async selectExeFile() {
+      try {
+        const exe_path = await invoke("select_file");
+        this.exePath = exe_path;
+      } catch (error) {
+        console.error("Error:", error);
+        // Custom alert
+      }
+    },
+    async selectImgFile() {
+      try {
+        const img_path = await invoke("select_file");
+        this.imgPath = img_path;
+      } catch (error) {
+        console.error("Error:", error);
+        // Custom alert
+      }
+    },
+    async selectBgFile() {
+      try {
+        const bg_path = await invoke("select_file");
+        this.bgPath = bg_path;
+      } catch (error) {
+        console.error("Error:", error);
+        // Custom alert
+      }
     },
   },
   data() {

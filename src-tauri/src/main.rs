@@ -30,7 +30,7 @@ fn select_file() -> Result<String, String> {
         Some(path) => {
             // Convert the file path to a string and return it
             match path.to_str() {
-                Some(path_str) => Ok(path_str.to_string()),
+                Some(path_str) => Ok(path_str.to_string()), // This is where the file path is returned if conversion succeeds
                 None => Err("Failed to convert path to string".to_string()),
             }
         }
