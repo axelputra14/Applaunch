@@ -22,10 +22,20 @@ fn launch_app(exeDir: &str) {
 }
 
 #[tauri::command]
-fn select_file() {
+fn select_file() -> Result<String, String> {
 
-    let filename = FileDialogBuilder::new().set_directory("").pick_file();
-    // nanti console log
+    let file_chosen = FileDialogBuilder::new().set_directory("").pick_file();
+    
+    match file_chosen {
+        Some(path) => {
+            // Convert the file path to a string and return it
+            match path.to_str() {
+                Some(path_str) => Ok(path_str.to_string()),
+                None => Err("Failed to convert path to string".to_string()),
+            }
+        }
+        None => Err("No file selected".to_string()),
+    }
 
 }
 
