@@ -7,15 +7,12 @@
 //     format!("Hello, {}! You've been greeted from Rust!", name)
 // 
 use std::process::Command;
-
+use tauri::api::dialog::blocking::FileDialogBuilder;
 
 #[tauri::command]
 fn launch_app(exeDir: &str) {
-
     // Create a new Command
     let mut cmd = Command::new(exeDir);
-
-    // For arguments cmd.arg("arg1").arg("arg2");
 
     // Execute the command
     match cmd.spawn() {
@@ -24,9 +21,17 @@ fn launch_app(exeDir: &str) {
     }
 }
 
+#[tauri::command]
+fn select_file() {
+
+    let filename = FileDialogBuilder::new().set_directory("").pick_file();
+    // nanti console log
+
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![launch_app])
+        .invoke_handler(tauri::generate_handler![launch_app, select_file])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
