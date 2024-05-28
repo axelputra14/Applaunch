@@ -14,7 +14,9 @@ export default {
   <div class="body">
     <div class="mainbody">
       <div class="contentbody h-max overflow-auto">
+        <p>Ini buat tes src thing</p>
         <br />
+        <img src="/src/assets/ini.jpg" />
 
         <Applistcomponent />
       </div>

@@ -49,8 +49,8 @@
         "fullscreen": false,
         "resizable": false,
         "title": "applaunch",
-        "width": 1600,
-        "height": 900,
+        "width": 1300,
+        "height": 500,
         "decorations": false,
         "hiddenTitle": true,
         "titleBarStyle": "Overlay"
@@ -69,7 +69,8 @@
         "icons/128x128@2x.png",
         "icons/icon.icns",
         "icons/icon.ico"
-      ]
+      ],
+      "resources": ["../src/assets/*"]
     }
   }
 }
