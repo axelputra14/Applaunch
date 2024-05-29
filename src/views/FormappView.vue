@@ -2,11 +2,11 @@
 import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
-import { ArrowLeftIcon } from "@heroicons/vue/24/solid";
+import { ArrowLeftIcon, FolderOpenIcon } from "@heroicons/vue/24/solid";
 import { invoke } from "@tauri-apps/api/tauri";
 export default {
   name: "FormappView",
-  components: { BottomNav, ArrowLeftIcon },
+  components: { BottomNav, ArrowLeftIcon, FolderOpenIcon },
   computed: {
     ...mapState(useFetchStore, ["applistbyid"]),
     exePath: "",
@@ -170,14 +170,21 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Publisher</label
               >
-              <input
-                type="text"
-                name="publisher"
-                id="publisher"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400"
-                placeholder="Publisher"
-                v-model="formData.publisher"
-              />
+              <div class="grid grid-flow-col grid-cols-12 gap-2">
+                <input
+                  type="text"
+                  name="publisher"
+                  id="publisher"
+                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400"
+                  placeholder="Publisher"
+                  v-model="formData.publisher"
+                />
+                <button
+                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
+                >
+                  <FolderOpenIcon class="h-7 w-7" />
+                </button>
+              </div>
             </div>
 
             <div>
@@ -186,14 +193,23 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Executable Directory</label
               >
-              <input
-                type="text"
-                name="exedir"
-                id="exedir"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500"
-                placeholder="Absolute directory of the executable"
-                v-model="formData.exeDir"
-              />
+              <div>
+                <div class="grid grid-flow-col grid-cols-12 gap-2">
+                  <input
+                    type="text"
+                    name="exedir"
+                    id="exedir"
+                    class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500"
+                    placeholder="Absolute directory of the executable"
+                    v-model="formData.exeDir"
+                  />
+                  <button
+                    class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
+                  >
+                    <FolderOpenIcon class="h-7 w-7" />
+                  </button>
+                </div>
+              </div>
             </div>
 
             <div>
