@@ -49,8 +49,8 @@
         "fullscreen": false,
         "resizable": false,
         "title": "applaunch",
-        "width": 1300,
-        "height": 500,
+        "width": 1600,
+        "height": 900,
         "decorations": false,
         "hiddenTitle": true,
         "titleBarStyle": "Overlay"

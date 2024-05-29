@@ -1,6 +1,7 @@
 <script>
 import BottomNav from "../components/BottomNav.vue";
 import Applistcomponent from "../components/Applistcomponent.vue";
+
 export default {
   name: "ApplistView",
   components: {
@@ -13,11 +14,7 @@ export default {
 <template>
   <div class="body">
     <div class="mainbody">
-      <div class="contentbody h-max overflow-auto">
-        <p>Ini buat tes src thing</p>
-        <br />
-        <img src="/src/assets/ini.jpg" />
-
+      <div class="contentbody w-11/12 h-max overflow-auto">
         <Applistcomponent />
       </div>
       <BottomNav />

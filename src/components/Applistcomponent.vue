@@ -4,6 +4,8 @@ import { useFetchStore } from "../stores/fetch";
 
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/solid";
 import Appcard from "./Appcard.vue";
+import AlertComponent from "./AlertComponent.vue";
+
 export default {
   name: "Applistcomponent",
   data() {
@@ -14,12 +16,16 @@ export default {
   components: {
     Appcard,
     MagnifyingGlassIcon,
+    AlertComponent,
   },
   methods: {
-    ...mapActions(useFetchStore, ["fetchApplists"]),
+    ...mapActions(useFetchStore, ["fetchApplists", "closeAlert"]),
+    closeAlertFunction() {
+      this.closeAlert();
+    },
   },
   computed: {
-    ...mapState(useFetchStore, ["applists"]),
+    ...mapState(useFetchStore, ["applists", "showAlert", "alertMessage"]),
     filterFn() {
       return this.applists.filter((app) =>
         app.title.toLowerCase().includes(this.searchTitleQuery.toLowerCase())
@@ -33,6 +39,15 @@ export default {
 </script>
 
 <template>
+  <div class="flex justify-center">
+    <Transition>
+      <AlertComponent
+        v-if="this.showAlert"
+        v-bind:alertContent="alertMessage"
+        @closeAlert="closeAlertFunction"
+      />
+    </Transition>
+  </div>
   <div class="container mx-auto px-8 py-12 min-h-screen">
     <div class="relative w-full" v-if="this.applists.length > 0">
       <!-- <div class="relative w-full"> -->
@@ -91,7 +106,15 @@ export default {
       />
     </div>
   </div>
-
-  <!-- </div> -->
-  <!-- </div> -->
 </template>
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

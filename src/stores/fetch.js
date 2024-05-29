@@ -10,6 +10,8 @@ export const useFetchStore = defineStore({
     return {
       applists: [],
       applistbyid: {},
+      showAlert: false,
+      alertMessage: "",
     };
   },
   actions: {
@@ -19,7 +21,8 @@ export const useFetchStore = defineStore({
 
         this.applists = response.data.rows;
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = err.response.data.message;
       }
     },
     async fetchAppById(id) {
@@ -28,7 +31,8 @@ export const useFetchStore = defineStore({
 
         this.applistbyid = response.data.result;
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = err.response.data.message;
       }
     },
     async addApplication(addData) {
@@ -45,9 +49,11 @@ export const useFetchStore = defineStore({
           relDate: addData.relDate,
         });
         router.push({ name: "applistpage" });
-        // swal fire something
+        this.showAlert = true;
+        this.alertMessage = "Selected application has been added";
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = err.response.data.message;
       }
     },
     async editApplication(editData) {
@@ -64,19 +70,29 @@ export const useFetchStore = defineStore({
           relDate: editData.relDate,
         });
         router.push({ name: "applistpage" });
+        this.showAlert = true;
+        this.alertMessage = "Selected application has been edited";
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = err.response.data.message;
       }
     },
     async deleteApplication(id) {
       try {
         await applist.delete(`/app/${id}`);
-        // router.push({ name: "applistpage" });
+
         router.go(0);
-        // swal fire something
+
+        this.showAlert = true;
+        this.alertMessage = "Selected application has been deleted";
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = err.response.data.message;
       }
+    },
+    closeAlert() {
+      this.showAlert = false;
+      this.alertMessage = "";
     },
   },
 });

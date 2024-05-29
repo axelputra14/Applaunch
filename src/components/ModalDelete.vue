@@ -14,21 +14,6 @@ export default {
 </script>
 
 <template>
-  <!-- <main class="modal-container z-50 bg-white opacity-25">
-    <div class="modal">
-      <div class="modal-header">
-        <slot name="header"></slot>
-      </div>
-      <div class="modal-content">
-        <slot name="content"></slot>
-      </div>
-      <div class="modal-footer">
-        <button v-on:click="deleteApp(this.applicationid)">Yes</button>
-        <button v-on:click="close()">No</button>
-      </div>
-    </div>
-  </main> -->
-
   <div
     class="absolute z-50"
     aria-labelledby="modal-title"

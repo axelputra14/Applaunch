@@ -32,11 +32,19 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    deleteApp(id) {
-      this.deleteApplication(id);
+    async deleteAppById(appid) {
+      this.showModal = false;
+      await this.deleteApplication(appid);
+      this.$router.push({ name: "applistpage" });
     },
     editApp(id) {
       this.$router.push({ name: "editapppage", params: { id } });
+    },
+    openDeleteModal(appid, button, content) {
+      this.appId = appid;
+      this.showModal = true;
+      this.type = button;
+      this.content = content;
     },
   },
   computed: {
@@ -61,12 +69,31 @@ export default {
   data() {
     return {
       finalDate: "",
+      appid: "",
+      type: "",
+      content: "",
+      showModal: false,
     };
   },
 };
 </script>
 
 <template>
+  <Transition>
+    <ModalDelete
+      v-if="showModal"
+      @close="showModal = false"
+      v-bind:applicationid="this.appId"
+      @deleteApp="deleteAppById"
+    >
+      <template v-slot:header>
+        <h1>{{ type }}</h1>
+      </template>
+      <template v-slot:content>
+        <p>{{ content }}</p>
+      </template>
+    </ModalDelete>
+  </Transition>
   <div
     class="relative max-w-full max-h-screen bg-[50%] bg-no-repeat overflow-hidden"
   >
@@ -133,3 +160,15 @@ export default {
 
   <BottomNav />
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

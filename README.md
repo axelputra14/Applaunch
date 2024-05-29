@@ -6,11 +6,11 @@ This is a personal project using Tauri + VueJS with SQLite DB and connected to A
 
 - Finish the frontend.
   - Dir input can either type manually or use button to select, then copy the file path.
+  - Each image has button selector, same to copy the file name but defaulted to each folder
   - Images try to use relative path from assets to eliminate need of extra http-server.
-  - Each image has button selector, same to copy the file name but defaulted to each folder that's static.
-- Figuring out the host for images.
+    that's static.
 - Date when edited has Unix postfixes.
-- Convert the backend from Node to Rust (low priority).
+- Convert the backend from Node to Rust (low priority). Or link with Adonis? Might be too complicated.
 
 ## Why this tech stack?
 

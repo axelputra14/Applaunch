@@ -13,7 +13,6 @@ export default {
     };
   },
   created() {
-    console.log(this.maximized);
     window.addEventListener("resize", this.resizeEventHandler);
   },
   destroyed() {
