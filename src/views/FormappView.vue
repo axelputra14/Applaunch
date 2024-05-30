@@ -9,9 +9,6 @@ export default {
   components: { BottomNav, ArrowLeftIcon, FolderOpenIcon },
   computed: {
     ...mapState(useFetchStore, ["applistbyid"]),
-    exePath: "",
-    imgPath: "",
-    bgPath: "",
   },
   methods: {
     ...mapActions(useFetchStore, [
@@ -31,31 +28,35 @@ export default {
     async selectExeFile() {
       try {
         const exe_path = await invoke("select_file");
+
         this.exePath = exe_path;
-        // update formData karena dia v-model ke situ
+        this.formData.exeDir = this.exePath;
+        this.showExeDirErr = false;
       } catch (error) {
-        console.error("Error:", error);
-        // Custom alert
+        this.exeErrMsg = error;
+        this.showExeDirErr = true;
       }
     },
     async selectImgFile() {
       try {
         const img_path = await invoke("select_file");
         this.imgPath = img_path;
-        // update formData karena dia v-model ke situ
+        this.formData.imgDir = this.imgPath;
+        this.showImgDirErr = false;
       } catch (error) {
-        console.error("Error:", error);
-        // Custom alert
+        this.imgErrMsg = error;
+        this.showImgDirErr = true;
       }
     },
     async selectBgFile() {
       try {
         const bg_path = await invoke("select_file");
         this.bgPath = bg_path;
-        // update formData karena dia v-model ke situ
+        this.formData.bgDir = this.bgPath;
+        this.showBgDirErr = false;
       } catch (error) {
-        console.error("Error:", error);
-        // Custom alert
+        this.bgErrMsg = error;
+        this.showBgDirErr = true;
       }
     },
   },
@@ -73,6 +74,15 @@ export default {
         lang: this.applistbyid?.lang || "",
         relDate: this.applistbyid?.relDate || "",
       },
+      showExeDirErr: false,
+      showImgDirErr: false,
+      showBgDirErr: false,
+      exePath: "",
+      imgPath: "",
+      bgPath: "",
+      exeErrMsg: "",
+      imgErrMsg: "",
+      bgErrMsg: "",
     };
   },
   async created() {
@@ -95,10 +105,6 @@ export default {
 
 <template>
   <div class="mainbody h-screen">
-    <!-- <h1 class="text-white text-2xl">
-      {{ !$route.params.id ? "Add new" : "Edit" }} application
-    </h1> -->
-
     <div class="relative p-4 w-screen h-full">
       <!-- Modal content -->
       <div class="relative p-4 rounded-lg shadow">
@@ -146,7 +152,7 @@ export default {
                 type="text"
                 name="title"
                 id="title"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-red-800 ring-red-800 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-red-800 focus:border-red-800"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-red-800 ring-red-800 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-red-800 focus:border-red-800 active:ring-red-800 active:border-red-800"
                 placeholder="Application title"
                 v-model="formData.title"
               />
@@ -161,7 +167,7 @@ export default {
                 type="text"
                 name="developer"
                 id="developer"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-orange-500 ring-orange-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-orange-500 focus:border-orange-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-orange-500 ring-orange-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-orange-500 focus:border-orange-500 active:ring-orange-500 active:border-orange-500"
                 placeholder="Developer"
                 v-model="formData.developer"
               />
@@ -173,21 +179,15 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Publisher</label
               >
-              <div class="grid grid-flow-col grid-cols-12 gap-2">
-                <input
-                  type="text"
-                  name="publisher"
-                  id="publisher"
-                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400"
-                  placeholder="Publisher"
-                  v-model="formData.publisher"
-                />
-                <button
-                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
-                >
-                  <FolderOpenIcon class="h-7 w-7" />
-                </button>
-              </div>
+
+              <input
+                type="text"
+                name="publisher"
+                id="publisher"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400 active:ring-yellow-400 active:border-yellow-400"
+                placeholder="Publisher"
+                v-model="formData.publisher"
+              />
             </div>
 
             <div>
@@ -202,16 +202,21 @@ export default {
                     type="text"
                     name="exedir"
                     id="exedir"
-                    class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500"
+                    class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500 active:ring-green-500 active:border-green-500"
                     placeholder="Absolute directory of the executable"
                     v-model="formData.exeDir"
                   />
                   <button
-                    class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
+                    class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-green-500 active:bg-green-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-green-600 rounded-lg"
+                    v-on:click="selectExeFile"
                   >
                     <FolderOpenIcon class="h-7 w-7" />
                   </button>
                 </div>
+
+                <span v-if="showExeDirErr" class="text-red-600 text-xs">
+                  {{ exeErrMsg }}
+                </span>
               </div>
             </div>
 
@@ -221,14 +226,25 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Cover Image</label
               >
-              <input
-                type="text"
-                name="imgdir"
-                id="imgdir"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500"
-                placeholder="Image file name for the cover"
-                v-model="formData.imgDir"
-              />
+              <div class="grid grid-flow-col grid-cols-12 gap-2">
+                <input
+                  type="text"
+                  name="imgdir"
+                  id="imgdir"
+                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500 active:ring-cyan-500 active:border-cyan-500"
+                  placeholder="Image file name for the cover"
+                  v-model="formData.imgDir"
+                />
+                <button
+                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-cyan-500 rounded-lg"
+                  v-on:click="selectImgFile"
+                >
+                  <FolderOpenIcon class="h-7 w-7" />
+                </button>
+              </div>
+              <span v-if="showImgDirErr" class="text-red-600 text-xs">
+                {{ imgErrMsg }}
+              </span>
             </div>
 
             <div>
@@ -237,14 +253,25 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Background Image</label
               >
-              <input
-                type="text"
-                name="bgdir"
-                id="bgdir"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Image file name for the background in details"
-                v-model="formData.bgDir"
-              />
+              <div class="grid grid-flow-col grid-cols-12 gap-2">
+                <input
+                  type="text"
+                  name="bgdir"
+                  id="bgdir"
+                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500 active:ring-blue-500 active:border-blue-500"
+                  placeholder="Image file name for the background in details"
+                  v-model="formData.bgDir"
+                />
+                <button
+                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-blue-500 active:bg-blue-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
+                  v-on:click="selectBgFile"
+                >
+                  <FolderOpenIcon class="h-7 w-7" />
+                </button>
+              </div>
+              <span v-if="showBgDirErr" class="text-red-600 text-xs">
+                {{ bgErrMsg }}</span
+              >
             </div>
 
             <div class="col-span-2">
@@ -256,7 +283,7 @@ export default {
               <textarea
                 id="description"
                 rows="8"
-                class="block p-2.5 w-full text-sm bg-[#160b3b] rounded-lg border border-indigo-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+                class="block p-2.5 w-full text-sm bg-[#160b3b] rounded-lg border border-indigo-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-indigo-500 focus:border-indigo-500 active:ring-indigo-500 active:border-indigo-500"
                 placeholder="Write product description here"
                 v-model="formData.desc"
               ></textarea>
@@ -272,7 +299,7 @@ export default {
                 type="text"
                 name="lang"
                 id="lang"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-purple-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-purple-500 focus:border-purple-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-purple-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-purple-500 focus:border-purple-500 active:ring-purple-500 active:border-purple-500"
                 placeholder="Main language of the application"
                 v-model="formData.lang"
               />
@@ -287,7 +314,7 @@ export default {
                 type="text"
                 name="reldate"
                 id="reldate"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-pink-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-pink-500 focus:border-pink-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-pink-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-pink-500 focus:border-pink-500 active:ring-pink-500 active:border-pink-500"
                 placeholder="Release date in YYYY-MM-DD"
                 v-model="formData.relDate"
               />
@@ -328,7 +355,7 @@ export default {
                 type="text"
                 name="title"
                 id="title"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-red-800 ring-red-800 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-red-800 focus:border-red-800"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-red-800 ring-red-800 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-red-800 focus:border-red-800 active:ring-red-800 active:border-red-800"
                 placeholder="Application title"
                 v-model="formData.title"
               />
@@ -343,7 +370,7 @@ export default {
                 type="text"
                 name="developer"
                 id="developer"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-orange-500 ring-orange-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-orange-500 focus:border-orange-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-orange-500 ring-orange-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-orange-500 focus:border-orange-500 active:ring-orange-500 active:border-orange-500"
                 placeholder="Developer"
                 v-model="formData.developer"
               />
@@ -355,11 +382,12 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Publisher</label
               >
+
               <input
                 type="text"
                 name="publisher"
                 id="publisher"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400 active:ring-yellow-400 active:border-yellow-400"
                 placeholder="Publisher"
                 v-model="formData.publisher"
               />
@@ -371,14 +399,28 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Executable Directory</label
               >
-              <input
-                type="text"
-                name="exedir"
-                id="exedir"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500"
-                placeholder="Absolute directory of the executable"
-                v-model="formData.exeDir"
-              />
+              <div>
+                <div class="grid grid-flow-col grid-cols-12 gap-2">
+                  <input
+                    type="text"
+                    name="exedir"
+                    id="exedir"
+                    class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500 active:ring-green-500 active:border-green-500"
+                    placeholder="Absolute directory of the executable"
+                    v-model="formData.exeDir"
+                  />
+                  <button
+                    class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-green-500 active:bg-green-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-green-600 rounded-lg"
+                    v-on:click="selectExeFile"
+                  >
+                    <FolderOpenIcon class="h-7 w-7" />
+                  </button>
+                </div>
+
+                <span v-if="showExeDirErr" class="text-red-600 text-xs">
+                  {{ exeErrMsg }}
+                </span>
+              </div>
             </div>
 
             <div>
@@ -387,14 +429,25 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Cover Image</label
               >
-              <input
-                type="text"
-                name="imgdir"
-                id="imgdir"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500"
-                placeholder="Image file name for the cover"
-                v-model="formData.imgDir"
-              />
+              <div class="grid grid-flow-col grid-cols-12 gap-2">
+                <input
+                  type="text"
+                  name="imgdir"
+                  id="imgdir"
+                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500 active:ring-cyan-500 active:border-cyan-500"
+                  placeholder="Image file name for the cover"
+                  v-model="formData.imgDir"
+                />
+                <button
+                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-cyan-500 rounded-lg"
+                  v-on:click="selectImgFile"
+                >
+                  <FolderOpenIcon class="h-7 w-7" />
+                </button>
+              </div>
+              <span v-if="showImgDirErr" class="text-red-600 text-xs">
+                {{ imgErrMsg }}
+              </span>
             </div>
 
             <div>
@@ -403,14 +456,25 @@ export default {
                 class="block mb-2 text-sm font-medium text-white"
                 >Background Image</label
               >
-              <input
-                type="text"
-                name="bgdir"
-                id="bgdir"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500"
-                placeholder="Image file name for the background in details"
-                v-model="formData.bgDir"
-              />
+              <div class="grid grid-flow-col grid-cols-12 gap-2">
+                <input
+                  type="text"
+                  name="bgdir"
+                  id="bgdir"
+                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500 active:ring-blue-500 active:border-blue-500"
+                  placeholder="Image file name for the background in details"
+                  v-model="formData.bgDir"
+                />
+                <button
+                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-blue-500 active:bg-blue-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
+                  v-on:click="selectBgFile"
+                >
+                  <FolderOpenIcon class="h-7 w-7" />
+                </button>
+              </div>
+              <span v-if="showBgDirErr" class="text-red-600 text-xs">
+                {{ bgErrMsg }}</span
+              >
             </div>
 
             <div class="col-span-2">
@@ -422,7 +486,7 @@ export default {
               <textarea
                 id="description"
                 rows="8"
-                class="block p-2.5 w-full text-sm bg-[#160b3b] rounded-lg border border-indigo-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-indigo-500 focus:border-indigo-500"
+                class="block p-2.5 w-full text-sm bg-[#160b3b] rounded-lg border border-indigo-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-indigo-500 focus:border-indigo-500 active:ring-indigo-500 active:border-indigo-500"
                 placeholder="Write product description here"
                 v-model="formData.desc"
               ></textarea>
@@ -438,7 +502,7 @@ export default {
                 type="text"
                 name="lang"
                 id="lang"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-purple-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-purple-500 focus:border-purple-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-purple-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-purple-500 focus:border-purple-500 active:ring-purple-500 active:border-purple-500"
                 placeholder="Main language of the application"
                 v-model="formData.lang"
               />
@@ -453,7 +517,7 @@ export default {
                 type="text"
                 name="reldate"
                 id="reldate"
-                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-pink-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-pink-500 focus:border-pink-500"
+                class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-pink-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-pink-500 focus:border-pink-500 active:ring-pink-500 active:border-pink-500"
                 placeholder="Release date in YYYY-MM-DD"
                 v-model="formData.relDate"
               />

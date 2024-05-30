@@ -50,7 +50,6 @@ export default {
   </div>
   <div class="container mx-auto px-8 py-12 min-h-screen">
     <div class="relative w-full" v-if="this.applists.length > 0">
-      <!-- <div class="relative w-full"> -->
       <div
         class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
       >
@@ -91,7 +90,6 @@ export default {
         </div>
       </div>
     </section>
-    <!-- v-if applists.length > 0 dan filteredItems.length (?) < 1 -->
 
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8"

@@ -44,7 +44,7 @@ export default {
     <div>
       <span class="font-medium">{{ alertContent }}</span>
     </div>
-    <!-- countdown, 3 seconds auto close-->
+
     <span class="ms-auto font-bold">{{ countdown }}</span>
 
     <button
