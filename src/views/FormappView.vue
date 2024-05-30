@@ -32,6 +32,7 @@ export default {
       try {
         const exe_path = await invoke("select_file");
         this.exePath = exe_path;
+        // update formData karena dia v-model ke situ
       } catch (error) {
         console.error("Error:", error);
         // Custom alert
@@ -41,6 +42,7 @@ export default {
       try {
         const img_path = await invoke("select_file");
         this.imgPath = img_path;
+        // update formData karena dia v-model ke situ
       } catch (error) {
         console.error("Error:", error);
         // Custom alert
@@ -50,6 +52,7 @@ export default {
       try {
         const bg_path = await invoke("select_file");
         this.bgPath = bg_path;
+        // update formData karena dia v-model ke situ
       } catch (error) {
         console.error("Error:", error);
         // Custom alert
