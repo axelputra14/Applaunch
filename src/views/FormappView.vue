@@ -27,7 +27,7 @@ export default {
     },
     async selectExeFile() {
       try {
-        const exe_path = await invoke("select_file");
+        const exe_path = await invoke("select_exe");
 
         this.exePath = exe_path;
         this.formData.exeDir = this.exePath;
@@ -39,7 +39,7 @@ export default {
     },
     async selectImgFile() {
       try {
-        const img_path = await invoke("select_file");
+        const img_path = await invoke("select_img");
         this.imgPath = img_path;
         this.formData.imgDir = this.imgPath;
         this.showImgDirErr = false;
@@ -50,7 +50,7 @@ export default {
     },
     async selectBgFile() {
       try {
-        const bg_path = await invoke("select_file");
+        const bg_path = await invoke("select_bg");
         this.bgPath = bg_path;
         this.formData.bgDir = this.bgPath;
         this.showBgDirErr = false;
