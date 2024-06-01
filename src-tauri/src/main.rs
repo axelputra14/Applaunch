@@ -40,7 +40,7 @@ fn select_exe() -> Result<String, String> {
 #[tauri::command]
 fn select_img() -> Result<String, String> {
     // Specify the relative default directory
-    let relative_directory = "relative/path/to/directory"; 
+    let relative_directory = "C:\\Users\\Axel\\Documents\\covercatalog\\cover"; 
 
     // Get the current working directory
     let current_dir = env::current_dir().map_err(|e| e.to_string())?;
@@ -70,7 +70,7 @@ fn select_img() -> Result<String, String> {
 #[tauri::command]
 fn select_bg() -> Result<String, String> {
     // Specify the relative default directory
-    let relative_directory = "relative/path/to/directory"; 
+    let relative_directory = "C:\\Users\\Axel\\Documents\\covercatalog\\bg"; 
 
     // Get the current working directory
     let current_dir = env::current_dir().map_err(|e| e.to_string())?;

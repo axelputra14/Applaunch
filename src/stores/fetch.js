@@ -22,7 +22,7 @@ export const useFetchStore = defineStore({
         this.applists = response.data.rows;
       } catch (err) {
         this.showAlert = true;
-        this.alertMessage = err.response.data.message;
+        this.alertMessage = "Failed getting app list";
       }
     },
     async fetchAppById(id) {
@@ -32,12 +32,12 @@ export const useFetchStore = defineStore({
         this.applistbyid = response.data.result;
       } catch (err) {
         this.showAlert = true;
-        this.alertMessage = err.response.data.message;
+        this.alertMessage = `Failed getting app`;
       }
     },
     async addApplication(addData) {
       try {
-        const response = await applist.post("/app/add", {
+        await applist.post("/app/add", {
           title: addData.title,
           developer: addData.developer,
           publisher: addData.publisher,
@@ -53,12 +53,12 @@ export const useFetchStore = defineStore({
         this.alertMessage = "Selected application has been added";
       } catch (err) {
         this.showAlert = true;
-        this.alertMessage = err.response.data.message;
+        this.alertMessage = "Error in adding data, check some fields";
       }
     },
     async editApplication(editData) {
       try {
-        const response = await applist.patch(`/app/edit/${editData.id}`, {
+        await applist.patch(`/app/edit/${editData.id}`, {
           title: editData.title,
           developer: editData.developer,
           publisher: editData.publisher,
@@ -74,23 +74,24 @@ export const useFetchStore = defineStore({
         this.alertMessage = "Selected application has been edited";
       } catch (err) {
         this.showAlert = true;
-        this.alertMessage = err.response.data.message;
+        this.alertMessage =
+          "Failed editing data of application, check some fields";
       }
     },
     async deleteApplication(id) {
       try {
         await applist.delete(`/app/${id}`);
 
-        router.go(0);
-
         this.showAlert = true;
         this.alertMessage = "Selected application has been deleted";
+
+        router.go(0);
       } catch (err) {
         this.showAlert = true;
-        this.alertMessage = err.response.data.message;
+        this.alertMessage = "Failed deleting app";
       }
     },
-    closeAlert() {
+    async closeAlert() {
       this.showAlert = false;
       this.alertMessage = "";
     },

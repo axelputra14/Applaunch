@@ -12,31 +12,25 @@ export default {
 </script>
 <template>
   <div
-    class="fixed z-50 w-full h-16 max-w-64 -translate-x-1/2 border-2 border-opacity-50 rounded-full bottom-4 left-1/2 bg-gray-700/25 border-gray-600 shadow-2xl shadow-rose-400/75"
+    class="fixed z-50 w-full h-12 max-w-64 -translate-x-1/2 border-2 border-opacity-50 rounded-full bottom-4 left-1/2 bg-gray-700/25 border-gray-600 shadow-md shadow-purple-400/75"
   >
     <div class="grid h-full max-w-lg grid-cols-2 mx-auto">
       <RouterLink
         to="/"
-        class="inline-flex cursor-pointer flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-700/50 group hover:shadow-2xl hover:shadow-lime-400/75"
-        >" >
-        <div>
-          <HomeIcon
-            class="w-8 h-8 mb-1 text-neutral-500 group-hover:text-slate-200"
-          />
-          <p class="font-medium">Home</p>
-        </div>
+        class="inline-flex cursor-pointer flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-700/50 group hover:shadow-2xl hover:shadow-sky-400/75"
+      >
+        <HomeIcon
+          class="w-6 h-6 mb-1 text-neutral-500 group-hover:text-sky-400"
+        />
       </RouterLink>
 
       <RouterLink
         to="/app-add"
-        class="inline-flex cursor-pointer flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-700/50 group hover:shadow-2xl hover:shadow-amber-400/75"
+        class="inline-flex cursor-pointer flex-col items-center justify-center px-5 rounded-e-full hover:bg-gray-700/50 group hover:shadow-2xl hover:shadow-lime-400/75"
       >
-        <div>
-          <PlusIcon
-            class="w-8 h-8 mb-1 text-neutral-500 group-hover:text-slate-200"
-          />
-          <p class="font-medium">Add</p>
-        </div>
+        <PlusIcon
+          class="w-6 h-6 mb-1 text-neutral-500 group-hover:text-green-400"
+        />
       </RouterLink>
     </div>
   </div>
