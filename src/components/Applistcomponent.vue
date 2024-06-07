@@ -93,11 +93,11 @@ export default {
 
     <div
       class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8"
-      v-if="this.applists.length > 0"
+      v-if="this.applists.length"
     >
       <!-- Iterate over applists and render Appcard component -->
       <Appcard
-        v-for="app in filterFn"
+        v-for="(app, index) in filterFn"
         :applicationdata="app"
         :key="app.id"
         v-if="this.applists.length > 0"
