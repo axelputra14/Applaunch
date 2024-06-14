@@ -70,9 +70,9 @@ export default {
     >
       No results found. Try with different keyword.
     </p>
-    <section
+    <div
       class="flex justify-center items-center"
-      v-if="this.applists.length == 0"
+      v-if="this.applists.length <= 0"
     >
       <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div class="mx-auto max-w-screen-sm text-center">
@@ -89,18 +89,14 @@ export default {
           </p>
         </div>
       </div>
-    </section>
+    </div>
 
-    <div
-      class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-8"
-      v-if="this.applists.length"
-    >
+    <div v-else class="grid grid-cols-5 gap-6">
       <!-- Iterate over applists and render Appcard component -->
       <Appcard
         v-for="(app, index) in filterFn"
         :applicationdata="app"
         :key="app.id"
-        v-if="this.applists.length > 0"
       />
     </div>
   </div>

@@ -26,11 +26,6 @@ const router = createRouter({
       name: "editapppage",
       component: FormappView,
     },
-    {
-      path: "/app/:id",
-      name: "appDetail",
-      component: AppDetail,
-    },
   ],
 });
 

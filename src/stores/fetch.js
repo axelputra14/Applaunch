@@ -25,16 +25,6 @@ export const useFetchStore = defineStore({
         this.alertMessage = "Failed getting app list";
       }
     },
-    async fetchAppById(id) {
-      try {
-        const response = await applist.get(`/app/${id}`);
-
-        this.applistbyid = response.data.result;
-      } catch (err) {
-        this.showAlert = true;
-        this.alertMessage = `Failed getting app`;
-      }
-    },
     async addApplication(addData) {
       try {
         await applist.post("/app/add", {

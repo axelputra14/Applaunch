@@ -16,9 +16,6 @@ export default {
   props: ["applicationdata"],
   methods: {
     ...mapActions(useFetchStore, ["deleteApplication"]),
-    getAppDetail(id) {
-      this.$router.push({ name: "appDetail", params: { id } });
-    },
     launchApp(exeDir) {
       invoke("launch_app", { exeDir });
     },
@@ -70,15 +67,12 @@ export default {
       <img
         class="object-scale-down max-w-[400px] h-[650px] items-center justify-center mx-auto"
         v-bind:src="'http://localhost:25850/cover/' + applicationdata.imgDir"
+        v-on:click="launchApp(applicationdata.exeDir)"
       />
 
       <div
         class="absolute left-0 w-full bg-opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
       >
-        <EyeIcon
-          class="h-6 w-6 text-sky-500 duration-500 hover:fill-sky-400 active:fill-sky-300"
-          v-on:click="getAppDetail(applicationdata.id)"
-        />
         <PlayIcon
           class="h-6 w-6 text-emerald-500 duration-500 hover:fill-emerald-400 active:fill-emerald-300"
           v-on:click="launchApp(applicationdata.exeDir)"
@@ -99,7 +93,7 @@ export default {
         />
       </div>
     </div>
-    <p class="text-white text-2xl text-center">{{ applicationdata.title }}</p>
+    <p class="text-white text-xl text-center">{{ applicationdata.title }}</p>
   </div>
 </template>
 
