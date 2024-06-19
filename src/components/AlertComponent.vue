@@ -35,8 +35,7 @@ export default {
 
 <template>
   <div
-    class="mt-5 flex items-center w-1/2 p-4 mb-4 text-sm border border-t-4 rounded-lg bg-gray-800 text-blue-400 border-blue-800 fixed top-5 z-50"
-    role="alert"
+    class="mt-5 flex items-center w-1/2 p-4 mb-4 text-sm border border-t-4 rounded-lg bg-gray-800 text-blue-400 border-blue-800 fixed top-5 z-50 bg-opacity-75"
   >
     <InformationCircleIcon
       class="flex-shrink-0 inline w-6 h-6 me-3 text-blue-400"

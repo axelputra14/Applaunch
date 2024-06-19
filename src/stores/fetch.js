@@ -50,7 +50,7 @@ export const useFetchStore = defineStore({
         });
         router.push({ name: "applistpage" });
         this.showAlert = true;
-        this.alertMessage = "Selected application has been added";
+        this.alertMessage = "New application has been added";
       } catch (err) {
         this.showAlert = true;
         this.alertMessage = "Error in adding data, check some fields";
@@ -85,6 +85,7 @@ export const useFetchStore = defineStore({
         this.showAlert = true;
         this.alertMessage = "Selected application has been deleted";
 
+        router.push({ name: "applistpage" });
         router.go(0);
       } catch (err) {
         this.showAlert = true;
