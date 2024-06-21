@@ -5,11 +5,14 @@
 use std::process::Command;
 use tauri::api::dialog::blocking::FileDialogBuilder;
 use std::env;
-// use std::path::PathBuf;
+use std::path::Path;
+
 use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use serde::{Deserialize, Serialize};
 use sqlx::{sqlite::SqlitePool, FromRow};
 use tokio::runtime::Runtime;
+use std::thread;
+use tokio::fs;
 
 #[derive(Serialize, Deserialize, FromRow)]
 struct AppData {
@@ -164,18 +167,45 @@ fn select_bg() -> Result<String, String> {
 }
 
 async fn server_start() -> std::io::Result<()> {
-    let database_url = "sqlite://db.sqlite";
-    let pool = sqlx::sqlite::SqlitePool::connect(database_url)
-        .await
-        .expect("Failed to create pool.");
+    let database_url = "sqlite://./db/db.sqlite";
+    let database_file = "./db/db.sqlite";
 
-    actix_web::HttpServer::new(move || {
-        actix_web::App::new()
-            .app_data(actix_web::web::Data::new(pool.clone()))
-            .route("/app", actix_web::web::get().to(get_apps))
-            .route("/app/add", actix_web::web::post().to(add_app))
-            .route("/app/{id}", actix_web::web::patch().to(update_app))
-            .route("/app/{id}", actix_web::web::delete().to(delete_app))
+    // Ensure the directory exists
+    std::fs::create_dir_all("./db").expect("Failed to create database directory");
+
+    // Check if the database file exists
+    let pool = if !Path::new(database_file).exists() {
+        println!("Database file '{}' not found, initializing...", database_file);
+
+        // Read setup.sql file
+        let setup_sql = fs::read_to_string("setup.sql").await.expect("Failed to read setup.sql");
+
+        // Connect to SQLite database
+        let pool = SqlitePool::connect(database_url)
+            .await
+            .expect("Failed to create pool.");
+
+        // Execute setup.sql script
+        sqlx::query(&setup_sql)
+            .execute(&pool)
+            .await
+            .expect("Failed to execute setup.sql");
+
+        println!("Database initialized successfully.");
+        pool
+    } else {
+        SqlitePool::connect(database_url)
+            .await
+            .expect("Failed to create pool.")
+    };
+
+    HttpServer::new(move || {
+        App::new()
+            .app_data(web::Data::new(pool.clone())) // Pass pool as application data
+            .route("/app", web::get().to(get_apps))
+            .route("/app/add", web::post().to(add_app))
+            .route("/app/{id}", web::patch().to(update_app))
+            .route("/app/{id}", web::delete().to(delete_app))
     })
     .bind("127.0.0.1:16850")?
     .run()
@@ -186,12 +216,20 @@ async fn run_server() {
     server_start().await.expect("Failed to start server");
 }
 
-fn main()  {
+fn main() {
+    // Create a Tokio runtime
+    let runtime = Runtime::new().expect("Failed to create runtime");
+
+    // Start the Actix server in a separate thread
+    thread::spawn(move || {
+        runtime.block_on(async {
+            run_server().await; // No unwrap, just await
+        });
+    });
+
+    // Run the Tauri application
     tauri::Builder::default()
         .invoke_handler(tauri::generate_handler![launch_app, select_exe, select_img, select_bg])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
-
-        let runtime = Runtime::new().expect("Failed to create runtime");
-        runtime.block_on(run_server());
 }
