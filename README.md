@@ -12,3 +12,7 @@ This is a personal project using Tauri + VueJS with SQLite DB and connected to A
 ## The quirk
 
 Needs separate backend at port 16850 and http-server at port 25850 to function since I failed to implement Rust backend and I don't want to sideload node into Tauri.
+
+## Thanks
+
+Thanks to Flowbite for the UI inspiration and components.
