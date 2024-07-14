@@ -14,21 +14,6 @@ export default {
 </script>
 
 <template>
-  <!-- <main class="modal-container z-50 bg-white opacity-25">
-    <div class="modal">
-      <div class="modal-header">
-        <slot name="header"></slot>
-      </div>
-      <div class="modal-content">
-        <slot name="content"></slot>
-      </div>
-      <div class="modal-footer">
-        <button v-on:click="deleteApp(this.applicationid)">Yes</button>
-        <button v-on:click="close()">No</button>
-      </div>
-    </div>
-  </main> -->
-
   <div
     class="absolute z-50"
     aria-labelledby="modal-title"
@@ -95,7 +80,7 @@ export default {
             </button>
             <button
               type="button"
-              class="mt-3 inline-flex w-full justify-center rounded-md bg-gray-900 px-3 py-2 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-blue-600 hover:bg-gray-800 sm:mt-0 sm:w-auto"
+              class="mt-3 inline-flex w-full justify-center rounded-md bg-gray-700 px-3 py-2 text-sm font-semibold text-gray-100 shadow-sm ring-1 ring-inset ring-blue-600 hover:bg-gray-800 sm:mt-0 sm:w-auto"
               v-on:click="close()"
             >
               No

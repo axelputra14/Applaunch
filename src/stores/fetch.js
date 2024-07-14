@@ -10,6 +10,8 @@ export const useFetchStore = defineStore({
     return {
       applists: [],
       applistbyid: {},
+      showAlert: false,
+      alertMessage: "",
     };
   },
   actions: {
@@ -19,7 +21,8 @@ export const useFetchStore = defineStore({
 
         this.applists = response.data.rows;
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = "Failed getting app list";
       }
     },
     async fetchAppById(id) {
@@ -28,12 +31,13 @@ export const useFetchStore = defineStore({
 
         this.applistbyid = response.data.result;
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = `Failed getting app`;
       }
     },
     async addApplication(addData) {
       try {
-        const response = await applist.post("/app/add", {
+        await applist.post("/app/add", {
           title: addData.title,
           developer: addData.developer,
           publisher: addData.publisher,
@@ -45,14 +49,16 @@ export const useFetchStore = defineStore({
           relDate: addData.relDate,
         });
         router.push({ name: "applistpage" });
-        // swal fire something
+        this.showAlert = true;
+        this.alertMessage = "New application has been added";
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = "Error in adding data, check some fields";
       }
     },
     async editApplication(editData) {
       try {
-        const response = await applist.patch(`/app/edit/${editData.id}`, {
+        await applist.patch(`/app/edit/${editData.id}`, {
           title: editData.title,
           developer: editData.developer,
           publisher: editData.publisher,
@@ -64,19 +70,31 @@ export const useFetchStore = defineStore({
           relDate: editData.relDate,
         });
         router.push({ name: "applistpage" });
+        this.showAlert = true;
+        this.alertMessage = "Selected application has been edited";
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage =
+          "Failed editing data of application, check some fields";
       }
     },
     async deleteApplication(id) {
       try {
         await applist.delete(`/app/${id}`);
-        // router.push({ name: "applistpage" });
+
+        this.showAlert = true;
+        this.alertMessage = "Selected application has been deleted";
+
+        router.push({ name: "applistpage" });
         router.go(0);
-        // swal fire something
       } catch (err) {
-        console.log(err.response.data.message);
+        this.showAlert = true;
+        this.alertMessage = "Failed deleting app";
       }
+    },
+    async closeAlert() {
+      this.showAlert = false;
+      this.alertMessage = "";
     },
   },
 });

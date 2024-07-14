@@ -32,11 +32,19 @@ export default {
     goBack() {
       this.$router.go(-1);
     },
-    deleteApp(id) {
-      this.deleteApplication(id);
+    async deleteAppById(appid) {
+      this.showModal = false;
+      await this.deleteApplication(appid);
+      this.$router.push({ name: "applistpage" });
     },
     editApp(id) {
       this.$router.push({ name: "editapppage", params: { id } });
+    },
+    openDeleteModal(appid, button, content) {
+      this.appId = appid;
+      this.showModal = true;
+      this.type = button;
+      this.content = content;
     },
   },
   computed: {
@@ -61,24 +69,43 @@ export default {
   data() {
     return {
       finalDate: "",
+      appid: "",
+      type: "",
+      content: "",
+      showModal: false,
     };
   },
 };
 </script>
 
 <template>
+  <Transition>
+    <ModalDelete
+      v-if="showModal"
+      @close="showModal = false"
+      v-bind:applicationid="this.appId"
+      @deleteApp="deleteAppById"
+    >
+      <template v-slot:header>
+        <h1>{{ type }}</h1>
+      </template>
+      <template v-slot:content>
+        <p>{{ content }}</p>
+      </template>
+    </ModalDelete>
+  </Transition>
   <div
-    class="relative max-w-full max-h-screen bg-[50%] bg-no-repeat overflow-hidden overscroll-none"
+    class="relative max-w-full max-h-screen bg-[50%] bg-no-repeat overflow-hidden"
   >
     <img
       class="min-w-screen min-h-screen"
       :src="'http://localhost:25850/bg/' + applistbyid.bgDir"
     />
     <div
-      class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-gradient-to-b from-transparent to-black/75 overscroll-none"
+      class="absolute bottom-0 left-0 right-0 top-0 h-full w-full bg-gradient-to-b from-transparent to-black/75"
     >
       <div
-        class="mt-5 mb-20 bg-gray-100 bg-opacity-30 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content overscroll-none"
+        class="mt-5 mb-20 bg-gray-100 bg-opacity-30 mx-10 backdrop-blur-sm shadow-lg rounded-xl bg-clip-content overflow-auto"
       >
         <div class="grid grid-cols-3 gap-10 p-5">
           <div class="col-span-1 flex justify-center items-center">
@@ -89,16 +116,16 @@ export default {
           </div>
           <div class="col-span-2 drop-shadow-sm">
             <p class="text-5xl mb-5">{{ applistbyid.title }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Developer</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.developer }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Publisher</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.publisher }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Description</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.desc }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Language</p>
-            <p class="text-lg text-gray-800">{{ applistbyid.lang }}</p>
-            <p class="mt-2 text-lg font-medium text-gray-900">Release Date</p>
-            <p class="text-lg text-gray-800">{{ finalDate }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Developer</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.developer }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Publisher</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.publisher }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Description</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.desc }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Language</p>
+            <p class="text-lg text-gray-900">{{ applistbyid.lang }}</p>
+            <p class="mt-2 text-lg font-semibold text-gray-800">Release Date</p>
+            <p class="text-lg text-gray-900">{{ finalDate }}</p>
           </div>
         </div>
       </div>
@@ -133,3 +160,15 @@ export default {
 
   <BottomNav />
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>

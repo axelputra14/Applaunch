@@ -48,19 +48,21 @@ export default {
 </script>
 
 <template>
-  <ModalDelete
-    v-if="showModal"
-    @close="showModal = false"
-    v-bind:applicationid="this.appId"
-    @deleteApp="deleteAppById"
-  >
-    <template v-slot:header>
-      <h1>{{ type }}</h1>
-    </template>
-    <template v-slot:content>
-      <p>{{ content }}</p>
-    </template>
-  </ModalDelete>
+  <Transition>
+    <ModalDelete
+      v-if="showModal"
+      @close="showModal = false"
+      v-bind:applicationid="this.appId"
+      @deleteApp="deleteAppById"
+    >
+      <template v-slot:header>
+        <h1>{{ type }}</h1>
+      </template>
+      <template v-slot:content>
+        <p>{{ content }}</p>
+      </template>
+    </ModalDelete>
+  </Transition>
   <div class="relative m-5">
     <div
       class="relative group cursor-pointer rounded-lg overflow-hidden duration-500 text-gray-50 mx-auto hover:bg-slate-50/5"
@@ -97,6 +99,18 @@ export default {
         />
       </div>
     </div>
-    <p class="text-white text-3xl text-center">{{ applicationdata.title }}</p>
+    <p class="text-white text-2xl text-center">{{ applicationdata.title }}</p>
   </div>
 </template>
+
+<style scoped>
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+</style>
