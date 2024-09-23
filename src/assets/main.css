@@ -9,8 +9,12 @@
   user-select: none;
 }
 
+html,
+body {
+  background: transparent;
+}
+
 .mainbody {
-  background-color: #170845;
   padding: 10px;
   display: flex;
   flex-direction: column;

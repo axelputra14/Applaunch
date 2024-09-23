@@ -1,7 +1,11 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+#![cfg_attr(
+    all(not(debug_assertions), target_os = "windows"),
+    windows_subsystem = "windows"
+  )]
 
-
+use tauri::Manager;
+use window_vibrancy::{apply_acrylic, NSVisualEffectMaterial};
 use std::process::Command;
 use tauri::api::dialog::blocking::FileDialogBuilder;
 use std::env;
@@ -97,8 +101,19 @@ fn select_bg() -> Result<String, String> {
     }
 }
 
+
+
 fn main() {
     tauri::Builder::default()
+    .setup(|app| {
+        let window = app.get_window("main").unwrap();
+  
+        #[cfg(target_os = "windows")]
+        apply_acrylic(&window, Some((18, 118, 218, 125)))
+          .expect("Unsupported platform! 'apply_acrylic' is only supported on Windows");
+  
+        Ok(())
+      })
         .invoke_handler(tauri::generate_handler![launch_app, select_exe, select_img, select_bg])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

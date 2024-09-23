@@ -49,21 +49,45 @@ export default {
     </Transition>
   </div>
   <div class="container mx-auto px-8 py-12 min-h-screen">
-    <div class="relative w-full" v-if="this.applists.length > 0">
+    <div class="grid grid-cols-2 grid-flow-row">
       <div
-        class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+        class="relative w-1/2 translate-x-1/2"
+        v-if="this.applists.length > 0"
       >
-        <MagnifyingGlassIcon
-          class="w-4 h-4 text-gray-500 dark:text-gray-400"
-        ></MagnifyingGlassIcon>
+        <div
+          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+        >
+          <MagnifyingGlassIcon
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+          ></MagnifyingGlassIcon>
+        </div>
+        <input
+          type="text"
+          v-model="searchTitleQuery"
+          class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700/75 border-cyan-500 placeholder-sky-300 text-sky-300"
+          placeholder="Search app name..."
+        />
       </div>
-      <input
-        type="text"
-        v-model="searchTitleQuery"
-        class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-900 border-cyan-500 placeholder-yellow-400 text-yellow-400"
-        placeholder="Search app name..."
-      />
+      <div
+        class="relative w-1/2 translate-x-1/2"
+        v-if="this.applists.length > 0"
+      >
+        <div
+          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+        >
+          <MagnifyingGlassIcon
+            class="w-4 h-4 text-gray-500 dark:text-gray-400"
+          ></MagnifyingGlassIcon>
+        </div>
+        <input
+          type="text"
+          v-model="searchTitleQuery"
+          class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700/75 border-cyan-500 placeholder-sky-300 text-sky-300"
+          placeholder="By brand name work in progress..."
+        />
+      </div>
     </div>
+
     <p
       class="text-center mt-1 text-sky-100"
       v-if="this.applists.length > 0 && filterFn.length < 1"
