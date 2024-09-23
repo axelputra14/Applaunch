@@ -48,17 +48,6 @@ export default {
         this.showImgDirErr = true;
       }
     },
-    async selectBgFile() {
-      try {
-        const bg_path = await invoke("select_bg");
-        this.bgPath = bg_path;
-        this.formData.bgDir = this.bgPath;
-        this.showBgDirErr = false;
-      } catch (error) {
-        this.bgErrMsg = error;
-        this.showBgDirErr = true;
-      }
-    },
     setFormType(type) {
       if (type === "add") {
         this.addappHandler();
@@ -73,23 +62,15 @@ export default {
         id: this.applistbyid?.id || "",
         title: this.applistbyid?.title || "",
         developer: this.applistbyid?.developer || "",
-        publisher: this.applistbyid?.publisher || "",
         exeDir: this.applistbyid?.exeDir || "",
         imgDir: this.applistbyid?.imgDir || "",
-        bgDir: this.applistbyid?.bgDir || "",
-        desc: this.applistbyid?.desc || "",
-        lang: this.applistbyid?.lang || "",
-        relDate: this.applistbyid?.relDate || "",
       },
       showExeDirErr: false,
       showImgDirErr: false,
-      showBgDirErr: false,
       exePath: "",
       imgPath: "",
-      bgPath: "",
       exeErrMsg: "",
       imgErrMsg: "",
-      bgErrMsg: "",
       formActionType: "",
     };
   },
@@ -99,13 +80,8 @@ export default {
       this.formData.id = this.applistbyid.id;
       this.formData.title = this.applistbyid.title;
       this.formData.developer = this.applistbyid.developer;
-      this.formData.publisher = this.applistbyid.publisher;
       this.formData.exeDir = this.applistbyid.exeDir;
       this.formData.imgDir = this.applistbyid.imgDir;
-      this.formData.bgDir = this.applistbyid.bgDir;
-      this.formData.desc = this.applistbyid.desc;
-      this.formData.lang = this.applistbyid.lang;
-      this.formData.relDate = this.applistbyid.relDate;
     }
   },
 };
@@ -176,23 +152,6 @@ export default {
 
           <div>
             <label
-              for="publisher"
-              class="block mb-2 text-sm font-medium text-white"
-              >Publisher</label
-            >
-
-            <input
-              type="text"
-              name="publisher"
-              id="publisher"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400 active:ring-yellow-400 active:border-yellow-400"
-              placeholder="Publisher"
-              v-model="formData.publisher"
-            />
-          </div>
-
-          <div>
-            <label
               for="exedir"
               class="block mb-2 text-sm font-medium text-white"
               >Executable Directory</label
@@ -246,75 +205,6 @@ export default {
             <span v-if="showImgDirErr" class="text-red-600 text-xs">
               {{ imgErrMsg }}
             </span>
-          </div>
-
-          <div>
-            <label for="bgdir" class="block mb-2 text-sm font-medium text-white"
-              >Background Image</label
-            >
-            <div class="grid grid-flow-col grid-cols-12 gap-2">
-              <input
-                type="text"
-                name="bgdir"
-                id="bgdir"
-                class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500 active:ring-blue-500 active:border-blue-500"
-                placeholder="Image file name for the background in details"
-                v-model="formData.bgDir"
-              />
-              <button
-                class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-blue-500 active:bg-blue-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
-                v-on:click="selectBgFile"
-              >
-                <FolderOpenIcon class="h-7 w-7" />
-              </button>
-            </div>
-            <span v-if="showBgDirErr" class="text-red-600 text-xs">
-              {{ bgErrMsg }}</span
-            >
-          </div>
-
-          <div class="col-span-2">
-            <label
-              for="description"
-              class="block mb-2 text-sm font-medium text-white"
-              >Description</label
-            >
-            <textarea
-              id="description"
-              rows="8"
-              class="block p-2.5 w-full text-sm bg-[#160b3b] rounded-lg border border-indigo-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-indigo-500 focus:border-indigo-500 active:ring-indigo-500 active:border-indigo-500"
-              placeholder="Write product description here"
-              v-model="formData.desc"
-            ></textarea>
-          </div>
-
-          <div>
-            <label for="lang" class="block mb-2 text-sm font-medium text-white"
-              >Language</label
-            >
-            <input
-              type="text"
-              name="lang"
-              id="lang"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-purple-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-purple-500 focus:border-purple-500 active:ring-purple-500 active:border-purple-500"
-              placeholder="Main language of the application"
-              v-model="formData.lang"
-            />
-          </div>
-          <div>
-            <label
-              for="reldate"
-              class="block mb-2 text-sm font-medium text-white"
-              >Release date</label
-            >
-            <input
-              type="text"
-              name="reldate"
-              id="reldate"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-pink-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-pink-500 focus:border-pink-500 active:ring-pink-500 active:border-pink-500"
-              placeholder="Release date in YYYY-MM-DD"
-              v-model="formData.relDate"
-            />
           </div>
         </div>
         <div class="flex flex-row justify-evenly">

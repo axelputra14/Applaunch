@@ -75,10 +75,10 @@ export default {
       <div
         class="absolute left-0 w-full bg-opacity-60 duration-500 group-hover:-translate-y-12 flex justify-evenly bg-gray-900 items-center py-3"
       >
-        <EyeIcon
+        <!-- <EyeIcon
           class="h-6 w-6 text-sky-500 duration-500 hover:fill-sky-400 active:fill-sky-300"
           v-on:click="getAppDetail(applicationdata.id)"
-        />
+        /> -->
         <PlayIcon
           class="h-6 w-6 text-emerald-500 duration-500 hover:fill-emerald-400 active:fill-emerald-300"
           v-on:click="launchApp(applicationdata.exeDir)"
