@@ -79,12 +79,27 @@ export default {
             class="w-4 h-4 text-gray-500 dark:text-gray-400"
           ></MagnifyingGlassIcon>
         </div>
-        <input
+        <!-- di sini by brand name-->
+
+        <div class="max-w-sm mx-auto">
+          <select
+            id="countries"
+            class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700/75 border-lime-500 placeholder-emerald-300 text-emerald-300"
+          >
+            <option disabled hidden selected>Search Developer</option>
+            <option class="bg-gray-700" value="US">United States</option>
+            <option class="bg-gray-700" value="CA">Canada</option>
+            <option class="bg-gray-700" value="FR">France</option>
+            <option class="bg-gray-700" value="DE">Germany</option>
+          </select>
+        </div>
+
+        <!-- <input
           type="text"
           v-model="searchTitleQuery"
           class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700/75 border-cyan-500 placeholder-sky-300 text-sky-300"
           placeholder="By brand name work in progress..."
-        />
+        /> -->
       </div>
     </div>
 
@@ -114,7 +129,7 @@ export default {
           >
             Hello!
           </h1>
-          <p class="mb-4 text-3xl tracking-tight font-medium text-sky-200">
+          <p class="mb-4 text-3xl tracking-tight font-medium text-cyan-200">
             Welcome to Applaunch!
           </p>
           <p class="mb-4 text-lg font-normal text-cyan-100">

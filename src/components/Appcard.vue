@@ -99,7 +99,10 @@ export default {
         />
       </div>
     </div>
-    <p class="text-white text-2xl text-center">{{ applicationdata.title }}</p>
+    <div class="flex-grow border-t border-gray-400"></div>
+    <p class="text-white text-2xl text-center pt-1">
+      {{ applicationdata.title }}
+    </p>
   </div>
 </template>
 
