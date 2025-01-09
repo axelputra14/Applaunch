@@ -97,12 +97,12 @@ export default {
         <h3 class="text-lg font-semibold text-white">
           {{ !$route.params.id ? "Add new" : "Edit" }} application
         </h3>
-        <button
+        <!-- <button
           type="button"
           class="text-gray-200 bg-transparent hover:rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-400 hover:text-white"
           v-on:click="goBack"
         >
-          <!-- Change to heroicon later. TBA remove, keep, or change to left arrow icon-->
+
           <svg
             aria-hidden="true"
             class="w-5 h-5"
@@ -116,11 +116,11 @@ export default {
               clip-rule="evenodd"
             ></path>
           </svg>
-        </button>
+        </button> -->
       </div>
 
       <form autocomplete="off" v-on:submit.prevent="">
-        <div class="grid gap-4 mb-4 grid-cols-2">
+        <div class="grid gap-12 mb-4 grid-cols-2 px-8 justify-center">
           <div>
             <label for="title" class="block mb-2 text-sm font-medium text-white"
               >Title</label
@@ -207,37 +207,69 @@ export default {
             </span>
           </div>
         </div>
-        <div class="flex flex-row justify-evenly">
-          <button
-            class="mt-10 py-2 px-4 text-xl bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg"
+        <div class="flex flex-row justify-end gap-x-8 px-8">
+          <!-- <button
+            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg w-60"
             type="submit"
             v-if="!$route.params.id"
             v-on:click="setFormType('add')"
           >
-            Add
+            Add New Application
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-xl bg-cyan-600 text-white hover:bg-cyan-500 active:bg-cyan-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-blue-500 rounded-lg"
-            v-on:click="goBack"
-            v-if="$route.params.id"
-          >
-            < Back
-          </button>
-          <button
-            class="mt-10 py-2 px-4 text-xl bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg"
+            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg w-60"
             type="submit"
             v-if="$route.params.id"
             v-on:click="setFormType('edit')"
           >
-            Edit
+            Edit Application
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-xl bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-slate-500 rounded-lg"
+            class="mt-10 py-2 px-4 text-sm bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-slate-500 rounded-lg w-60"
             type="reset"
           >
             Reset
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-cyan-600 text-white hover:bg-cyan-500 active:bg-cyan-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-blue-500 rounded-lg w-60"
+            v-on:click="goBack"
+          >
+            Cancel
+          </button> -->
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 rounded-lg w-60"
+            type="submit"
+            v-if="!$route.params.id"
+            v-on:click="setFormType('add')"
+          >
+            Add New Application
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-green-600 rounded-lg w-60 w-60"
+            type="submit"
+            v-if="$route.params.id"
+            v-on:click="setFormType('edit')"
+          >
+            Edit Application
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-slate-900 text-green-600 hover:bg-green-500 hover:text-white active:bg-green-400 ring-2 ring-green-600 rounded-lg w-60"
+            type="reset"
+          >
+            Reset
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-slate-900 text-white hover:text-green-500 rounded-lg w-60"
+            v-on:click="goBack"
+          >
+            Cancel
           </button>
         </div>
       </form>

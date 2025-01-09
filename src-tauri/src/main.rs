@@ -4,8 +4,6 @@
     windows_subsystem = "windows"
   )]
 
-use tauri::Manager;
-use window_vibrancy::{apply_acrylic, NSVisualEffectMaterial};
 use std::process::Command;
 use tauri::api::dialog::blocking::FileDialogBuilder;
 use std::env;
@@ -106,11 +104,6 @@ fn select_bg() -> Result<String, String> {
 fn main() {
     tauri::Builder::default()
     .setup(|app| {
-        let window = app.get_window("main").unwrap();
-  
-        #[cfg(target_os = "windows")]
-        apply_acrylic(&window, Some((18, 118, 218, 125)))
-          .expect("Unsupported platform! 'apply_acrylic' is only supported on Windows");
   
         Ok(())
       })
