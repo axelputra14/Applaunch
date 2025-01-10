@@ -17,7 +17,7 @@ export default {
     <div class="grid h-full max-w-lg grid-cols-2 mx-auto">
       <RouterLink
         to="/"
-        class="inline-flex cursor-pointer flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-800/75 group hover:shadow-2xl hover:shadow-sky-400/75 border-amber-400 border-r"
+        class="inline-flex cursor-pointer flex-col items-center justify-center px-5 rounded-s-full hover:bg-gray-800/75 group hover:shadow-2xl hover:shadow-sky-400/75"
       >
         <HomeIcon
           class="w-6 h-6 mb-1 text-neutral-300 group-hover:text-sky-600"

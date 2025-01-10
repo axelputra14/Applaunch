@@ -131,7 +131,7 @@ export default {
               type="text"
               name="title"
               id="title"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-red-800 ring-red-800 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-red-800 focus:border-red-800 active:ring-red-800 active:border-red-800"
+              class="bg-[#11131F] border text-sm rounded-lg block w-full p-2.5 border-teal-500 ring-teal-500 placeholder-gray-400 text-white focus:bg-teal-600 focus:ring-teal-500 focus:border-teal-500 active:ring-teal-500 active:border-teal-500"
               placeholder="Application title"
               v-model="formData.title"
             />
@@ -146,7 +146,7 @@ export default {
               type="text"
               name="developer"
               id="developer"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-orange-500 ring-orange-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-orange-500 focus:border-orange-500 active:ring-orange-500 active:border-orange-500"
+              class="bg-[#11131F] border text-sm rounded-lg block w-full p-2.5 border-sky-500 ring-sky-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-sky-500 focus:border-sky-500 active:ring-sky-500 active:border-sky-500"
               placeholder="Developer"
               v-model="formData.developer"
             />
@@ -164,12 +164,12 @@ export default {
                   type="text"
                   name="exedir"
                   id="exedir"
-                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500 active:ring-green-500 active:border-green-500"
+                  class="bg-[#11131F] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-blue-500 ring-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500 active:ring-blue-500 active:border-blue-500"
                   placeholder="Absolute directory of the executable"
                   v-model="formData.exeDir"
                 />
                 <button
-                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-green-500 active:bg-green-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-green-600 rounded-lg"
+                  class="flex justify-center items-center text-sm bg-[#0D141F] text-white hover:bg-blue-500 active:bg-blue-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-600 rounded-lg"
                   v-on:click="selectExeFile"
                 >
                   <FolderOpenIcon class="h-7 w-7" />
@@ -193,12 +193,12 @@ export default {
                 type="text"
                 name="imgdir"
                 id="imgdir"
-                class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500 active:ring-cyan-500 active:border-cyan-500"
+                class="bg-[#11131F] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500 active:ring-cyan-500 active:border-cyan-500"
                 placeholder="Image file name for the cover"
                 v-model="formData.imgDir"
               />
               <button
-                class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-cyan-500 rounded-lg"
+                class="flex justify-center items-center text-sm bg-[#0D141F] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-cyan-500 rounded-lg"
                 v-on:click="selectImgFile"
               >
                 <FolderOpenIcon class="h-7 w-7" />
@@ -243,35 +243,35 @@ export default {
           </button> -->
 
           <button
-            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 rounded-lg w-60"
+            class="mt-10 py-2 px-4 text-sm bg-emerald-600 text-white hover:bg-emerald-500 active:bg-emerald-400 rounded-lg w-40"
             type="submit"
             v-if="!$route.params.id"
             v-on:click="setFormType('add')"
           >
-            Add New Application
+            Add
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-green-600 rounded-lg w-60 w-60"
+            class="mt-10 py-2 px-4 text-sm bg-emerald-600 text-white hover:bg-emerald-500 active:bg-emerald-400 ring-2 ring-emerald-600 rounded-lg w-40"
             type="submit"
             v-if="$route.params.id"
             v-on:click="setFormType('edit')"
           >
-            Edit Application
+            Edit
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-sm bg-transparent text-green-600 hover:bg-green-500 hover:text-white active:bg-green-400 ring-2 ring-green-600 rounded-lg w-60"
-            type="reset"
-          >
-            Reset
-          </button>
-
-          <button
-            class="mt-10 py-2 px-4 text-sm bg-transparent text-white hover:text-green-500 rounded-lg w-60"
+            class="mt-10 py-2 px-4 text-sm bg-[#13131e] text-emerald-600 hover:bg-emerald-500 hover:text-white active:bg-emerald-400 ring-2 ring-emerald-600 rounded-lg w-40"
             v-on:click="goBack"
           >
             Cancel
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-transparent text-white hover:text-emerald-500 rounded-lg w-40"
+            type="reset"
+          >
+            Reset
           </button>
         </div>
       </form>

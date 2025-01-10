@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       searchTitleQuery: "",
+      searchDeveloperQuery: "",
     };
   },
   components: {
@@ -26,10 +27,15 @@ export default {
   },
   computed: {
     ...mapState(useFetchStore, ["applists", "showAlert", "alertMessage"]),
-    filterFn() {
+    filterNameFn() {
       return this.applists.filter((app) =>
         app.title.toLowerCase().includes(this.searchTitleQuery.toLowerCase())
       );
+    },
+    filterDeveloperFn() {
+      return this.applists.filter((app) => {
+        app.developer === this.searchDeveloperQuery;
+      });
     },
   },
   async created() {
@@ -55,7 +61,7 @@ export default {
         v-if="this.applists.length > 0"
       >
         <div
-          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none bottom-1"
         >
           <MagnifyingGlassIcon
             class="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -64,7 +70,7 @@ export default {
         <input
           type="text"
           v-model="searchTitleQuery"
-          class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700/75 border-cyan-500 placeholder-sky-300 text-sky-300"
+          class="border text-sm rounded-lg block w-full ps-10 p-2 bg-gray-700/75 border-cyan-500 placeholder-sky-300 text-sky-300 focus:border-yellow-400"
           placeholder="Search app name..."
         />
       </div>
@@ -73,7 +79,7 @@ export default {
         v-if="this.applists.length > 0"
       >
         <div
-          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none"
+          class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none bottom-1"
         >
           <MagnifyingGlassIcon
             class="w-4 h-4 text-gray-500 dark:text-gray-400"
@@ -84,13 +90,16 @@ export default {
         <div class="max-w-sm mx-auto">
           <select
             id="countries"
-            class="border text-sm rounded-lg block w-full ps-10 p-2.5 bg-gray-700/75 border-lime-500 placeholder-emerald-300 text-emerald-300"
+            class="border text-sm rounded-lg block w-full ps-10 p-2 bg-gray-700/75 border-yellow-500 placeholder-yellow-300 text-yellow-300 focus:border-pink-400"
           >
             <option disabled hidden selected>Search Developer</option>
-            <option class="bg-gray-700" value="US">United States</option>
-            <option class="bg-gray-700" value="CA">Canada</option>
-            <option class="bg-gray-700" value="FR">France</option>
-            <option class="bg-gray-700" value="DE">Germany</option>
+            <option
+              class="bg-slate-800"
+              v-for="app in applists"
+              :value="app.developer"
+            >
+              {{ app.developer }}
+            </option>
           </select>
         </div>
 
@@ -105,7 +114,7 @@ export default {
 
     <p
       class="text-center mt-1 text-sky-100"
-      v-if="this.applists.length > 0 && filterFn.length < 1"
+      v-if="this.applists.length > 0 && filterNameFn.length < 1"
     >
       No results found. Try with different keyword.
     </p>
@@ -116,7 +125,7 @@ export default {
     >
       <!-- Iterate over applists and render Appcard component -->
       <Appcard
-        v-for="(app, index) in filterFn"
+        v-for="(app, index) in filterNameFn"
         :applicationdata="app"
         :key="app.id"
       />
