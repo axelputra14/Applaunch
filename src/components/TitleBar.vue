@@ -50,7 +50,7 @@ export default {
   <div
     @dblclick="toggleMaximize"
     data-tauri-drag-region
-    class="titlebar flex flex-row h-6"
+    class="titlebar flex flex-row h-12"
     id="titlebar"
   >
     <div class="py-[2px] left-4 select-none gap-x-3 mt-2 pt-2 h-8 fixed z-50">

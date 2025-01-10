@@ -4,9 +4,10 @@ import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
 import { ArrowLeftIcon, FolderOpenIcon } from "@heroicons/vue/24/solid";
 import { invoke } from "@tauri-apps/api/tauri";
+import Bubbles from "../components/Bubbles.vue";
 export default {
   name: "FormappView",
-  components: { BottomNav, ArrowLeftIcon, FolderOpenIcon },
+  components: { BottomNav, ArrowLeftIcon, FolderOpenIcon, Bubbles },
   computed: {
     ...mapState(useFetchStore, ["applistbyid"]),
   },
@@ -88,6 +89,7 @@ export default {
 </script>
 
 <template>
+  <Bubbles />
   <div class="mainbody h-screen">
     <div class="relative p-4 w-screen h-full">
       <!-- Modal header -->
@@ -259,14 +261,14 @@ export default {
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-sm bg-slate-900 text-green-600 hover:bg-green-500 hover:text-white active:bg-green-400 ring-2 ring-green-600 rounded-lg w-60"
+            class="mt-10 py-2 px-4 text-sm bg-transparent text-green-600 hover:bg-green-500 hover:text-white active:bg-green-400 ring-2 ring-green-600 rounded-lg w-60"
             type="reset"
           >
             Reset
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-sm bg-slate-900 text-white hover:text-green-500 rounded-lg w-60"
+            class="mt-10 py-2 px-4 text-sm bg-transparent text-white hover:text-green-500 rounded-lg w-60"
             v-on:click="goBack"
           >
             Cancel
