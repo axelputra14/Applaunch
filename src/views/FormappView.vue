@@ -3,8 +3,10 @@ import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
 import { ArrowLeftIcon, FolderOpenIcon } from "@heroicons/vue/24/solid";
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 import Bubbles from "../components/Bubbles.vue";
+import { open } from "@tauri-apps/plugin-dialog";
+
 export default {
   name: "FormappView",
   components: { BottomNav, ArrowLeftIcon, FolderOpenIcon, Bubbles },
@@ -28,7 +30,11 @@ export default {
     },
     async selectExeFile() {
       try {
-        const exe_path = await invoke("select_exe");
+        const exe_path = await open({
+          multiple: false,
+          directory: false,
+          title: "Select executable file",
+        });
 
         this.exePath = exe_path;
         this.formData.exeDir = this.exePath;
@@ -40,7 +46,12 @@ export default {
     },
     async selectImgFile() {
       try {
-        const img_path = await invoke("select_img");
+        const img_path = await open({
+          multiple: false,
+          directory: false,
+          defaultPath: "C:\\Users\\Axel\\Documents\\covercatalog\\cover",
+          title: "Select image cover",
+        });
         this.imgPath = img_path;
         this.formData.imgDir = this.imgPath;
         this.showImgDirErr = false;

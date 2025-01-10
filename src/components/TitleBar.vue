@@ -1,11 +1,12 @@
 <script>
-import { appWindow } from "@tauri-apps/api/window";
+import { getCurrentWebviewWindow } from "@tauri-apps/api/webviewWindow";
 import {
   MinusIcon,
   Square2StackIcon,
   WindowIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/solid";
+const appWindow = getCurrentWebviewWindow()
 export default {
   data() {
     return {
