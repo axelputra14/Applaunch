@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import ApplistView from "../views/ApplistView.vue";
 import FormappView from "../views/FormappView.vue";
-import AppDetail from "../views/AppDetail.vue";
+// import AppDetail from "../views/AppDetail.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,11 +25,6 @@ const router = createRouter({
       path: "/app-edit/:id",
       name: "editapppage",
       component: FormappView,
-    },
-    {
-      path: "/app/:id",
-      name: "appDetail",
-      component: AppDetail,
     },
   ],
 });

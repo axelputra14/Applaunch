@@ -10,7 +10,7 @@ export default {
   },
   data() {
     return {
-      countdown: 5,
+      countdown: 3,
     };
   },
   methods: {

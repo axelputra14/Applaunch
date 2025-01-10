@@ -9,8 +9,15 @@
   user-select: none;
 }
 
+html,
+body {
+  background: #13131e;
+  z-index: -3;
+  position: relative;
+}
+
 .mainbody {
-  background-color: #170845;
+  z-index: -2;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -19,6 +26,61 @@
   font-family: "Open Sans", sans-serif;
 }
 
+.bubbles {
+  z-index: -2;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  background-color: #999999;
+  height: 0;
+}
+
+.bubbles span {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  background: #44ddff;
+  margin: 0 4px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 10px #44ddff44, 0 0 50px #34cdef, 0 0 50px #24bddf;
+  animation: animate_bubble 15s linear infinite;
+  animation-duration: calc(150s / var(--i));
+}
+
+.bubbles span:nth-child(2n) {
+  background: #fbd87a;
+  box-shadow: 0 0 0 10px #fbd87a44, 0 0 50px #ebc86a, 0 0 50px #dbb85a;
+}
+
+.bubbles span:nth-child(3n) {
+  background: #ff88bb;
+  box-shadow: 0 0 0 10px #ff88bb44, 0 0 50px #ef78ab, 0 0 50px #df689b;
+}
+
+/* .bubbles span:nth-child(4n) {
+  background: #aaef24;
+  box-shadow: 0 0 0 10px #aaef2444, 0 0 50px #aaef24, 0 0 50px #aaef24;
+} */
+
+/* .bubbles span:nth-child(5n) {
+  background: #ff3838;
+  box-shadow: 0 0 0 10px #ff383844, 0 0 50px #ff3838, 0 0 50px #ff3838;
+}
+.bubbles span:nth-child(6n) {
+  background: #ff5522;
+  box-shadow: 0 0 0 10px #ff552244, 0 0 50px #ff5522, 0 0 50px #ff5522;
+} */
+
+@keyframes animate_bubble {
+  0% {
+    transform: translateY(100vh) scale(0);
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+  }
+}
+
+/* scrollbar */
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

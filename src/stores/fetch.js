@@ -40,13 +40,8 @@ export const useFetchStore = defineStore({
         await applist.post("/app/add", {
           title: addData.title,
           developer: addData.developer,
-          publisher: addData.publisher,
           exeDir: addData.exeDir,
           imgDir: addData.imgDir,
-          bgDir: addData.bgDir,
-          desc: addData.desc,
-          lang: addData.lang,
-          relDate: addData.relDate,
         });
         router.push({ name: "applistpage" });
         this.showAlert = true;
@@ -61,13 +56,8 @@ export const useFetchStore = defineStore({
         await applist.patch(`/app/edit/${editData.id}`, {
           title: editData.title,
           developer: editData.developer,
-          publisher: editData.publisher,
           exeDir: editData.exeDir,
           imgDir: editData.imgDir,
-          bgDir: editData.bgDir,
-          desc: editData.desc,
-          lang: editData.lang,
-          relDate: editData.relDate,
         });
         router.push({ name: "applistpage" });
         this.showAlert = true;

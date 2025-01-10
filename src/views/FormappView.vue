@@ -4,9 +4,10 @@ import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
 import { ArrowLeftIcon, FolderOpenIcon } from "@heroicons/vue/24/solid";
 import { invoke } from "@tauri-apps/api/tauri";
+import Bubbles from "../components/Bubbles.vue";
 export default {
   name: "FormappView",
-  components: { BottomNav, ArrowLeftIcon, FolderOpenIcon },
+  components: { BottomNav, ArrowLeftIcon, FolderOpenIcon, Bubbles },
   computed: {
     ...mapState(useFetchStore, ["applistbyid"]),
   },
@@ -48,17 +49,6 @@ export default {
         this.showImgDirErr = true;
       }
     },
-    async selectBgFile() {
-      try {
-        const bg_path = await invoke("select_bg");
-        this.bgPath = bg_path;
-        this.formData.bgDir = this.bgPath;
-        this.showBgDirErr = false;
-      } catch (error) {
-        this.bgErrMsg = error;
-        this.showBgDirErr = true;
-      }
-    },
     setFormType(type) {
       if (type === "add") {
         this.addappHandler();
@@ -73,23 +63,15 @@ export default {
         id: this.applistbyid?.id || "",
         title: this.applistbyid?.title || "",
         developer: this.applistbyid?.developer || "",
-        publisher: this.applistbyid?.publisher || "",
         exeDir: this.applistbyid?.exeDir || "",
         imgDir: this.applistbyid?.imgDir || "",
-        bgDir: this.applistbyid?.bgDir || "",
-        desc: this.applistbyid?.desc || "",
-        lang: this.applistbyid?.lang || "",
-        relDate: this.applistbyid?.relDate || "",
       },
       showExeDirErr: false,
       showImgDirErr: false,
-      showBgDirErr: false,
       exePath: "",
       imgPath: "",
-      bgPath: "",
       exeErrMsg: "",
       imgErrMsg: "",
-      bgErrMsg: "",
       formActionType: "",
     };
   },
@@ -99,19 +81,15 @@ export default {
       this.formData.id = this.applistbyid.id;
       this.formData.title = this.applistbyid.title;
       this.formData.developer = this.applistbyid.developer;
-      this.formData.publisher = this.applistbyid.publisher;
       this.formData.exeDir = this.applistbyid.exeDir;
       this.formData.imgDir = this.applistbyid.imgDir;
-      this.formData.bgDir = this.applistbyid.bgDir;
-      this.formData.desc = this.applistbyid.desc;
-      this.formData.lang = this.applistbyid.lang;
-      this.formData.relDate = this.applistbyid.relDate;
     }
   },
 };
 </script>
 
 <template>
+  <Bubbles />
   <div class="mainbody h-screen">
     <div class="relative p-4 w-screen h-full">
       <!-- Modal header -->
@@ -121,12 +99,12 @@ export default {
         <h3 class="text-lg font-semibold text-white">
           {{ !$route.params.id ? "Add new" : "Edit" }} application
         </h3>
-        <button
+        <!-- <button
           type="button"
           class="text-gray-200 bg-transparent hover:rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-400 hover:text-white"
           v-on:click="goBack"
         >
-          <!-- Change to heroicon later. TBA remove, keep, or change to left arrow icon-->
+
           <svg
             aria-hidden="true"
             class="w-5 h-5"
@@ -140,11 +118,11 @@ export default {
               clip-rule="evenodd"
             ></path>
           </svg>
-        </button>
+        </button> -->
       </div>
 
       <form autocomplete="off" v-on:submit.prevent="">
-        <div class="grid gap-4 mb-4 grid-cols-2">
+        <div class="grid gap-12 mb-4 grid-cols-2 px-8 justify-center">
           <div>
             <label for="title" class="block mb-2 text-sm font-medium text-white"
               >Title</label
@@ -153,7 +131,7 @@ export default {
               type="text"
               name="title"
               id="title"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-red-800 ring-red-800 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-red-800 focus:border-red-800 active:ring-red-800 active:border-red-800"
+              class="bg-[#11131F] border text-sm rounded-lg block w-full p-2.5 border-teal-500 ring-teal-500 placeholder-gray-400 text-white focus:bg-teal-600 focus:ring-teal-500 focus:border-teal-500 active:ring-teal-500 active:border-teal-500"
               placeholder="Application title"
               v-model="formData.title"
             />
@@ -168,26 +146,9 @@ export default {
               type="text"
               name="developer"
               id="developer"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-orange-500 ring-orange-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-orange-500 focus:border-orange-500 active:ring-orange-500 active:border-orange-500"
+              class="bg-[#11131F] border text-sm rounded-lg block w-full p-2.5 border-sky-500 ring-sky-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-sky-500 focus:border-sky-500 active:ring-sky-500 active:border-sky-500"
               placeholder="Developer"
               v-model="formData.developer"
-            />
-          </div>
-
-          <div>
-            <label
-              for="publisher"
-              class="block mb-2 text-sm font-medium text-white"
-              >Publisher</label
-            >
-
-            <input
-              type="text"
-              name="publisher"
-              id="publisher"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-yellow-400 ring-yellow-400 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-yellow-400 focus:border-yellow-400 active:ring-yellow-400 active:border-yellow-400"
-              placeholder="Publisher"
-              v-model="formData.publisher"
             />
           </div>
 
@@ -203,12 +164,12 @@ export default {
                   type="text"
                   name="exedir"
                   id="exedir"
-                  class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-green-500 ring-green-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-green-500 focus:border-green-500 active:ring-green-500 active:border-green-500"
+                  class="bg-[#11131F] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-blue-500 ring-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500 active:ring-blue-500 active:border-blue-500"
                   placeholder="Absolute directory of the executable"
                   v-model="formData.exeDir"
                 />
                 <button
-                  class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-green-500 active:bg-green-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-green-600 rounded-lg"
+                  class="flex justify-center items-center text-sm bg-[#0D141F] text-white hover:bg-blue-500 active:bg-blue-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-600 rounded-lg"
                   v-on:click="selectExeFile"
                 >
                   <FolderOpenIcon class="h-7 w-7" />
@@ -232,12 +193,12 @@ export default {
                 type="text"
                 name="imgdir"
                 id="imgdir"
-                class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500 active:ring-cyan-500 active:border-cyan-500"
+                class="bg-[#11131F] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-cyan-500 ring-cyan-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-cyan-500 focus:border-cyan-500 active:ring-cyan-500 active:border-cyan-500"
                 placeholder="Image file name for the cover"
                 v-model="formData.imgDir"
               />
               <button
-                class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-cyan-500 rounded-lg"
+                class="flex justify-center items-center text-sm bg-[#0D141F] text-white hover:bg-cyan-500 active:bg-cyan-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-cyan-500 rounded-lg"
                 v-on:click="selectImgFile"
               >
                 <FolderOpenIcon class="h-7 w-7" />
@@ -247,79 +208,42 @@ export default {
               {{ imgErrMsg }}
             </span>
           </div>
-
-          <div>
-            <label for="bgdir" class="block mb-2 text-sm font-medium text-white"
-              >Background Image</label
-            >
-            <div class="grid grid-flow-col grid-cols-12 gap-2">
-              <input
-                type="text"
-                name="bgdir"
-                id="bgdir"
-                class="bg-[#160b3b] col-span-11 border text-sm rounded-lg block w-full p-2.5 border-blue-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-blue-500 focus:border-blue-500 active:ring-blue-500 active:border-blue-500"
-                placeholder="Image file name for the background in details"
-                v-model="formData.bgDir"
-              />
-              <button
-                class="flex justify-center items-center text-sm bg-[#160b3b] text-white hover:bg-blue-500 active:bg-blue-400 ring-1 ring-offset-0 ring-offset-slate-900 ring-blue-500 rounded-lg"
-                v-on:click="selectBgFile"
-              >
-                <FolderOpenIcon class="h-7 w-7" />
-              </button>
-            </div>
-            <span v-if="showBgDirErr" class="text-red-600 text-xs">
-              {{ bgErrMsg }}</span
-            >
-          </div>
-
-          <div class="col-span-2">
-            <label
-              for="description"
-              class="block mb-2 text-sm font-medium text-white"
-              >Description</label
-            >
-            <textarea
-              id="description"
-              rows="8"
-              class="block p-2.5 w-full text-sm bg-[#160b3b] rounded-lg border border-indigo-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-indigo-500 focus:border-indigo-500 active:ring-indigo-500 active:border-indigo-500"
-              placeholder="Write product description here"
-              v-model="formData.desc"
-            ></textarea>
-          </div>
-
-          <div>
-            <label for="lang" class="block mb-2 text-sm font-medium text-white"
-              >Language</label
-            >
-            <input
-              type="text"
-              name="lang"
-              id="lang"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-purple-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-purple-500 focus:border-purple-500 active:ring-purple-500 active:border-purple-500"
-              placeholder="Main language of the application"
-              v-model="formData.lang"
-            />
-          </div>
-          <div>
-            <label
-              for="reldate"
-              class="block mb-2 text-sm font-medium text-white"
-              >Release date</label
-            >
-            <input
-              type="text"
-              name="reldate"
-              id="reldate"
-              class="bg-[#160b3b] border text-sm rounded-lg block w-full p-2.5 border-pink-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-pink-500 focus:border-pink-500 active:ring-pink-500 active:border-pink-500"
-              placeholder="Release date in YYYY-MM-DD"
-              v-model="formData.relDate"
-            />
-          </div>
         </div>
-        <div class="flex flex-row justify-evenly">
+        <div class="flex flex-row justify-end gap-x-8 px-8">
+          <!-- <button
+            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg w-60"
+            type="submit"
+            v-if="!$route.params.id"
+            v-on:click="setFormType('add')"
+          >
+            Add New Application
+          </button>
+
           <button
-            class="mt-10 py-2 px-4 text-xl bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg"
+            class="mt-10 py-2 px-4 text-sm bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg w-60"
+            type="submit"
+            v-if="$route.params.id"
+            v-on:click="setFormType('edit')"
+          >
+            Edit Application
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-slate-500 rounded-lg w-60"
+            type="reset"
+          >
+            Reset
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-cyan-600 text-white hover:bg-cyan-500 active:bg-cyan-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-blue-500 rounded-lg w-60"
+            v-on:click="goBack"
+          >
+            Cancel
+          </button> -->
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-emerald-600 text-white hover:bg-emerald-500 active:bg-emerald-400 rounded-lg w-40"
             type="submit"
             v-if="!$route.params.id"
             v-on:click="setFormType('add')"
@@ -328,14 +252,7 @@ export default {
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-xl bg-cyan-600 text-white hover:bg-cyan-500 active:bg-cyan-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-blue-500 rounded-lg"
-            v-on:click="goBack"
-            v-if="$route.params.id"
-          >
-            < Back
-          </button>
-          <button
-            class="mt-10 py-2 px-4 text-xl bg-green-600 text-white hover:bg-green-500 active:bg-green-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-emerald-500 rounded-lg"
+            class="mt-10 py-2 px-4 text-sm bg-emerald-600 text-white hover:bg-emerald-500 active:bg-emerald-400 ring-2 ring-emerald-600 rounded-lg w-40"
             type="submit"
             v-if="$route.params.id"
             v-on:click="setFormType('edit')"
@@ -344,7 +261,14 @@ export default {
           </button>
 
           <button
-            class="mt-10 py-2 px-4 text-xl bg-gray-600 text-white hover:bg-gray-500 active:bg-gray-400 ring-2 ring-offset-2 ring-offset-slate-900 ring-slate-500 rounded-lg"
+            class="mt-10 py-2 px-4 text-sm bg-[#13131e] text-emerald-600 hover:bg-emerald-500 hover:text-white active:bg-emerald-400 ring-2 ring-emerald-600 rounded-lg w-40"
+            v-on:click="goBack"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="mt-10 py-2 px-4 text-sm bg-transparent text-white hover:text-emerald-500 rounded-lg w-40"
             type="reset"
           >
             Reset

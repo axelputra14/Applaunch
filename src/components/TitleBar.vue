@@ -50,46 +50,53 @@ export default {
   <div
     @dblclick="toggleMaximize"
     data-tauri-drag-region
-    class="titlebar flex flex-row justify-end select-none gap-x-3 pr-4 pt-2 h-8 bg-transparent fixed right-0 pl-[1600px] z-50"
+    class="titlebar flex flex-row h-12"
     id="titlebar"
   >
-    <div
-      @click="minimize"
-      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
-      id="titlebar-minimize"
-    >
-      <MinusIcon
-        class="text-emerald-600 w-5 h-5 basis-10 stroke-2 stroke-emerald-600 drop-shadow-lg"
-      ></MinusIcon>
+    <div class="py-[2px] left-4 select-none gap-x-3 mt-2 pt-2 h-8 fixed z-50">
+      <p class="font-normal text-white">Applaunch</p>
     </div>
     <div
-      v-if="maximized"
-      @click="toggleMaximize"
-      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
-      id="titlebar-maximize"
+      class="bg-slate-800/50 rounded-2xl py-[2px] justify-end select-none gap-x-3 mt-2 pt-2 h-8 fixed right-4 z-50"
     >
-      <Square2StackIcon
-        class="text-amber-500 w-5 h-5 basis-10 drop-shadow-lg"
-      ></Square2StackIcon>
-    </div>
-    <div
-      v-else
-      @click="toggleMaximize"
-      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
-      id="titlebar-restore"
-    >
-      <WindowIcon
-        class="text-amber-500 w-5 h-5 basis-10 drop-shadow-lg"
-      ></WindowIcon>
-    </div>
-    <div
-      @click="close"
-      class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer"
-      id="titlebar-close"
-    >
-      <XMarkIcon
-        class="text-red w-5 h-5 basis-10 stroke-2 stroke-red-500 drop-shadow-lg"
-      ></XMarkIcon>
+      <div
+        @click="minimize"
+        class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer mx-2"
+        id="titlebar-minimize"
+      >
+        <MinusIcon
+          class="text-white w-5 h-5 basis-10 stroke-2 stroke-white drop-shadow-lg"
+        ></MinusIcon>
+      </div>
+      <div
+        v-if="maximized"
+        @click="toggleMaximize"
+        class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer mx-2"
+        id="titlebar-maximize"
+      >
+        <Square2StackIcon
+          class="text-white w-5 h-5 basis-10 drop-shadow-lg"
+        ></Square2StackIcon>
+      </div>
+      <div
+        v-else
+        @click="toggleMaximize"
+        class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer mx-2"
+        id="titlebar-restore"
+      >
+        <WindowIcon
+          class="text-white w-5 h-5 basis-10 drop-shadow-lg"
+        ></WindowIcon>
+      </div>
+      <div
+        @click="close"
+        class="titlebar-button inline-flex justify-center items-center hover:cursor-pointer mx-2"
+        id="titlebar-close"
+      >
+        <XMarkIcon
+          class="text-red w-5 h-5 basis-10 stroke-2 stroke-white drop-shadow-lg"
+        ></XMarkIcon>
+      </div>
     </div>
   </div>
 </template>
