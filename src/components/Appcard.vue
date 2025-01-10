@@ -8,7 +8,7 @@ import {
 import ModalDelete from "./ModalDelete.vue";
 import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
-import { invoke } from "@tauri-apps/api/tauri";
+import { invoke } from "@tauri-apps/api/core";
 
 export default {
   name: "Appcard",
