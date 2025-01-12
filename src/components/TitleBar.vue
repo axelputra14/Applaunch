@@ -6,7 +6,7 @@ import {
   WindowIcon,
   XMarkIcon,
 } from "@heroicons/vue/24/solid";
-const appWindow = getCurrentWebviewWindow()
+const appWindow = getCurrentWebviewWindow();
 export default {
   data() {
     return {

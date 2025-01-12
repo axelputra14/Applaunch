@@ -37,6 +37,8 @@ export const useFetchStore = defineStore({
     },
     async addApplication(addData) {
       try {
+        console.log("am I here");
+
         await applist.post("/app/add", {
           title: addData.title,
           developer: addData.developer,
@@ -47,6 +49,8 @@ export const useFetchStore = defineStore({
         this.showAlert = true;
         this.alertMessage = "New application has been added";
       } catch (err) {
+        console.log(err);
+
         this.showAlert = true;
         this.alertMessage = "Error in adding data, check some fields";
       }

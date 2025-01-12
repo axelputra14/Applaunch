@@ -3,7 +3,6 @@ import { mapActions, mapState } from "pinia";
 import { useFetchStore } from "../stores/fetch";
 import BottomNav from "../components/BottomNav.vue";
 import { ArrowLeftIcon, FolderOpenIcon } from "@heroicons/vue/24/solid";
-import { invoke } from "@tauri-apps/api/core";
 import Bubbles from "../components/Bubbles.vue";
 import { open } from "@tauri-apps/plugin-dialog";
 
@@ -142,7 +141,7 @@ export default {
               type="text"
               name="title"
               id="title"
-              class="bg-[#11131F] border text-sm rounded-lg block w-full p-2.5 border-teal-500 ring-teal-500 placeholder-gray-400 text-white focus:bg-teal-600 focus:ring-teal-500 focus:border-teal-500 active:ring-teal-500 active:border-teal-500"
+              class="bg-[#11131F] border text-sm rounded-lg block w-full p-2.5 border-teal-500 ring-teal-500 placeholder-gray-400 text-white focus:bg-gray-900 focus:ring-teal-500 focus:border-teal-500 active:ring-teal-500 active:border-teal-500"
               placeholder="Application title"
               v-model="formData.title"
             />
