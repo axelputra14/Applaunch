@@ -28,7 +28,9 @@ body {
 
 .bubbles {
   z-index: -2;
-  position: relative;
+  /* position: relative; */
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   background-color: #999999;
