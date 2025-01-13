@@ -39,8 +39,7 @@
         "height": 900,
         "decorations": false,
         "hiddenTitle": true,
-        "titleBarStyle": "Overlay",
-        "useHttpsScheme": true
+        "titleBarStyle": "Overlay"
       }
     ]
   }
